@@ -5,7 +5,7 @@ We debug all the things.
 
 
 ## Heading ##
-  > Run N’ Eat
+Run N’ Eat
 Food Runner
 TBD
  
@@ -20,7 +20,7 @@ TBD
 
 
 ## Problem ##
-	Have you ever spent lunch alone when you didn’t know anyone yet? Do you wish Kevin would ask you if you wanted a burrito before he went to Chipotle? Did your lightning talk cost you your lunch break? Did you feel that the rubber duck debugger made you work on your sprint through lunch, so you were stuck eating animal crackers instead of a nice burger from P.Terry’s? 
+Have you ever spent lunch alone when you didn’t know anyone yet? Do you wish Kevin would ask you if you wanted a burrito before he went to Chipotle? Did your lightning talk cost you your lunch break? Did you feel that the rubber duck debugger made you work on your sprint through lunch, so you were stuck eating animal crackers instead of a nice burger from P.Terry’s? 
 
 
 ## Solution ##
