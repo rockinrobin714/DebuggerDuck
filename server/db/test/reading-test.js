@@ -6,7 +6,7 @@ describe('Reading users out of the database', () =>{
 
 	beforeEach((done)=>{
 
-		joe = new User({name:'Joe'});
+		joe = new User({username:'Joe', picture:'cats'});
 		joe.save()
 			.then(() => done());
 	});

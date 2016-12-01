@@ -1,6 +1,6 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/27017');
+//mongoose.connect('mongodb://localhost/27017');
 //mongoose.connect(172.23.0.0/16)
 
 const UserSchema = new Schema ({

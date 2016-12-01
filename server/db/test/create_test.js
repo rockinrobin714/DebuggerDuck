@@ -4,7 +4,7 @@ const User = require('../src/user')
 //You MUST call done if you put it in the parens
 describe('Creating records', () => {
 	it ('saves a user', (done) => {
-		const joe = new User({name:'Joe'});
+		const joe = new User({username:'Joe', pic:'cats'});
 
 		joe.save()
 			.then(()=>{
