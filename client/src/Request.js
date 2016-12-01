@@ -7,12 +7,16 @@ import ReactDOM from 'react-dom';
 
 //Component
 class Request extends Component {
-  return ( 
-   <div>
-    'Request'
+
+  render() {
+    return ( 
+      <div>
+        'Request'
      
-  </div>
-  );
+      </div>
+    );
+  }  
+  
 };
 
 export default Request;

@@ -9,12 +9,17 @@ import ReactDOM from 'react-dom';
 
 //Component
 class Profile extends Component {
-  return ( 
-   <div>
-    'Profile'
+  
+
+  render() { 
+    return ( 
+      <div>
+       'Profile'
      
-  </div>
+      </div>
   );
+ }
+  
 };
 
 

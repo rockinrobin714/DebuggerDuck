@@ -14,14 +14,18 @@ import Volunteer from './Volunteer';
 
 //Component
 class Runner extends Component {
-  return ( 
-   <div>
-    'I am the volunteer/request page.'
-    <Profile />
-    <VolunteerButton />
-    <Volunteer />
-  </div>
+  
+  render() {
+    return ( 
+     <div>
+      'I am the volunteer/request page.'
+      <Profile />
+      <VolunteerButton />
+      <Volunteer />
+    </div>
   );
+ }
+   
 };
 
 

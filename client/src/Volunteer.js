@@ -12,14 +12,19 @@ import RequestButton from './RequestButton';
 
 //Component
 class Volunteer extends Component {
-  return ( 
-   <div>
-    'Volunteer'
-    <Request />
-    <RequestButton />
+  
+
+  render() {
+  	return ( 
+      <div>
+      'Volunteer'
+      <Request />
+      <RequestButton />
      
-  </div>
+     </div>
   );
+ }
+ 
 };
 
 export default Volunteer;

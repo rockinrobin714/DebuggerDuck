@@ -8,12 +8,15 @@ import ReactDOM from 'react-dom';
 
 //Component
 class RequestButton extends Component {
-  return ( 
-   <div>
-    'RequestButton'
+  
+  render() {
+    return ( 
+      <div>
+        'RequestButton'
      
-  </div>
-  );
+     </div>
+    );
+  }  
 };
 
 export default RequestButton;
