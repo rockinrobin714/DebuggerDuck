@@ -1,12 +1,12 @@
-# Project Name
+# [Name - TBD]
 
-> Pithy project description
+> Help your team.  Help yourself.  Eat real food.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Robin Dykema
+  - __Scrum Master__: Johnny McDuff
+  - __Development Team Members__: Renata Maraj, Will Schwanke
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@
 
 ## Usage
 
-> Some usage instructions
+> Using your facebook, log on to our app on the landing page. Next, choose your group. After that, you can choose to volunteer to grab food or request a food order.
 
 ## Requirements
 
