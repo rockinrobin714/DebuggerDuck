@@ -6,11 +6,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//Import Relevant Components
+import Request from './Request';
+import RequestButton from './RequestButton';
+
 //Component
 const Volunteer = () => {
   return ( 
    <div>
     'Volunteer'
+    <Request />
+    <RequestButton />
      
   </div>
   );

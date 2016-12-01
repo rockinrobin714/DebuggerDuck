@@ -1,23 +1,25 @@
 //Runner.js is the page component for the volunteer/request page.
+//It renders the VolunteerButton and the various Volunteer Components.
+//It also renders Profile.
 
 //Standard imports.
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 //Imports for components rendered by Runner.js.
-import VolunteerButton from './VolunteerButton';
 import Profile from './Profile';
+import VolunteerButton from './VolunteerButton';
 import Volunteer from './Volunteer';
-import RequestButton from './RequestButton';
+
 
 //Component
 const Runner = () => {
   return ( 
    <div>
     'I am the volunteer/request page.'
-    <VolunteerButton />
     <Profile />
-    <RequestButton />
+    <VolunteerButton />
+    <Volunteer />
   </div>
   );
 };
