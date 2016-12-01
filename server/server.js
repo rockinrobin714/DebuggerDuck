@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = request('./util/router.js');
+const router = require('./util/router.js');
+const db = require('./db/src/schemas.js')
+const dbConnection = require('./db/src/connection.js')
 
 // Use express
 const app = express();
