@@ -2,11 +2,11 @@
 //Renders once per food request, under the relevant Volunteer.
 
 //Standard Imports.
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 //Component
-const Request = () => {
+class Request extends Component {
   return ( 
    <div>
     'Request'

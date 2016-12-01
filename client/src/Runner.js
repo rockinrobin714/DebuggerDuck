@@ -3,7 +3,7 @@
 //It also renders Profile.
 
 //Standard imports.
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 //Imports for components rendered by Runner.js.
@@ -13,7 +13,7 @@ import Volunteer from './Volunteer';
 
 
 //Component
-const Runner = () => {
+class Runner extends Component {
   return ( 
    <div>
     'I am the volunteer/request page.'

@@ -3,11 +3,11 @@
 //Text box that accepts a food order(string).
 
 //Standard Imports.
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 //Component
-const RequestButton = () => {
+class RequestButton extends Component {
   return ( 
    <div>
     'RequestButton'

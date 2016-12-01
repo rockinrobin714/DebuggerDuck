@@ -3,12 +3,12 @@
 //Stretch Goal:  Loads FB picture.
 
 //Standard imports.
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 
 //Component
-const Profile = () => {
+class Profile extends Component {
   return ( 
    <div>
     'Profile'
