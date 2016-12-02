@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "babel client/src --presets=es2015,react -d client/dist --source-maps inline",
-    "build-watch": "babel client/src --presets=es2015,react -d dist --source-maps inline -w",
-    "browserify": "browserify -t [ babelify --presets [ 'react', 'es2015' ] ] client/src/index.js -o client/dist/app.js",
     "start": "nodemon server/server.js"
   },
   "devDependencies": {
