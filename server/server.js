@@ -1,6 +1,7 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = request('./util/router.js');
+const router = require('./util/router.js');
 
 // Use express
 const app = express();
@@ -8,6 +9,13 @@ module.exports.app = app;
 
 // Use body-parser for parsing JSON in the request body
 app.use(bodyParser.json());
+
+// Serve the static client HTML files
+app.use(express.static(path.join(__dirname, '/../client/public')));
+// Serve the static client React files
+app.use('/dist', express.static(path.join(__dirname, '/../client/dist')));
+// Serve the node modules
+app.use('/node_modules', express.static(path.join(__dirname, '/../node_modules')));
 
 // Check to see if there is a port environment variable or just use port 4040 instead
 const port = process.env.PORT || 4040;
