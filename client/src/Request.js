@@ -7,10 +7,10 @@ import ReactDOM from 'react-dom';
 
 //Component
 class Request extends Component {
-	contructor(props) {
+	constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {person: '', request: ''};
   }
 
   render() {

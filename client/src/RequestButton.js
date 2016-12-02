@@ -11,7 +11,7 @@ class RequestButton extends Component {
   constructor(props) {
   	super(props);
 
-  	this.state({food: ''});
+  	this.state = {food: ''};
   }
   
   render() {
