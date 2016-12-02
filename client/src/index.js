@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+//import App from './App';
 import FacebookButton from './Login.js'
 
 ReactDOM.render(
   //<App />,
-  <Runner />,
+  <FacebookButton />,
   document.getElementById('root')
 );
