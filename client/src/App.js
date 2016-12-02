@@ -9,21 +9,11 @@ import ReactDOM from 'react-dom';
 //Standard imports.
 
 //Imports for components rendered by Runner.js.
-<<<<<<< HEAD
-//import Profile from './Profile';
-//import VolunteerButton from './VolunteerButton';
-//import Volunteer from './Volunteer';
-import FacebookButton from './Login.js'
-||||||| merged common ancestors
+
 import Profile from './Profile';
 import VolunteerButton from './VolunteerButton';
 import Volunteer from './Volunteer';
-=======
-import Profile from './Profile';
-import VolunteerButton from './VolunteerButton';
-import Volunteer from './Volunteer';
-import FacebookButton from './Login.js'
->>>>>>> db06b953da98696bae38f77fb40fc3a2fb30a3f9
+import FacebookButton from './Login.js';
 
 
 //Component
