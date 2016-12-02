@@ -5,6 +5,6 @@ import FacebookButton from './Login.js'
 
 ReactDOM.render(
   //<App />,
-  <FacebookButton />,
+  <Runner />,
   document.getElementById('root')
 );
