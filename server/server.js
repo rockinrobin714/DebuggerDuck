@@ -2,16 +2,23 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./util/router.js');
-const db = require('./db/src/schemas.js')
-const dbConnection = require('./db/src/connection.js')
+const db = require('./db/schemas.js')
+const dbConnection = require('./db/connection.js')
 
 
 // Use express
 const app = express();
 module.exports.app = app;
 
+
+//***How to insert something in the DB:
+// let example = new db.user({ username:'blablabla', pic:'blablabla' });
+// example.save();
+
+
+
 // Use body-parser for parsing JSON in the request body
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 // Serve the static client HTML files
 app.use(express.static(path.join(__dirname, '/../client/public')));
