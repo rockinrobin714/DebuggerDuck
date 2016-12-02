@@ -17,7 +17,7 @@ const UserSchema = new Schema ({
 	//mongoose will automatically create a unique id, so no need to manually create one
 	username: String,
 	picture: String,
-	groups: [{group_id: String, karma:{type: Number, default:0}}]
+	groups: [{group_id: String, karma: {type: Number, default:0}}]
 
 });
 

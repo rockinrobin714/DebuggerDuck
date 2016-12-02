@@ -1,3 +1,5 @@
+const db = require('../db/schemas.js');
+
 module.exports = {
   // Login controller functions for GET
   login: {
@@ -14,7 +16,7 @@ module.exports = {
   group: {
   // Login controller functions for GET
     get: (req, res) => {
-      console.log('Group GET');
+      
       res.send(200);
     },
   // Login controller functions for GET
