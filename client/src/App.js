@@ -1,18 +1,32 @@
-import React, { Component } from 'react';
+//Runner.js is the page component for the volunteer/request page.
+//It renders the VolunteerButton and the various Volunteer Components.
+//It also renders Profile.
 
-class App extends Component {
+//Standard imports.
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+
+//Imports for components rendered by Runner.js.
+import Profile from './Profile';
+import VolunteerButton from './VolunteerButton';
+import Volunteer from './Volunteer';
+
+
+//Component
+class Runner extends Component {
+  
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+    return ( 
+     <div>
+      'I am the volunteer/request page.'
+      <Profile />
+      <VolunteerButton />
+      <Volunteer />
+    </div>
+  );
+ }
+   
+};
 
-export default App;
+
+export default Runner;

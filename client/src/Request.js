@@ -7,6 +7,11 @@ import ReactDOM from 'react-dom';
 
 //Component
 class Request extends Component {
+	contructor(props) {
+    super(props);
+
+    this.state = {};
+  }
 
   render() {
     return ( 

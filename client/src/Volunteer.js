@@ -12,7 +12,11 @@ import RequestButton from './RequestButton';
 
 //Component
 class Volunteer extends Component {
-  
+  contructor(props) {
+    super(props);
+
+    this.state = {};
+  }
 
   render() {
   	return ( 
