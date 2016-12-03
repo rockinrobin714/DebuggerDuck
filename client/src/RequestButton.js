@@ -11,7 +11,7 @@ class RequestButton extends Component {
   constructor(props) {
   	super(props);
 
-  	this.state = {food: ''};
+  	this.state = {food: ''} ;
   }
   
   render() {
@@ -19,17 +19,22 @@ class RequestButton extends Component {
       <div>
         'RequestButton'
         What do you want?
-        <input value={this.state.food} onChange={this.onFoodChange} />
+        <input value={this.state.food} onChange={this.onFoodChange.bind(this)} />
         Request!
-        <button onClick={this.onClick} />
+        <button onClick={this.onClick.bind(this)} />
      </div>
     );
   }
-
+  
+  //Updates food state
   onFoodChange(event) {
+    console.log('value?:',event.target.value);
+    console.log('pre-change state',this.state.food);
   	this.setState( {food: event.target.value} );
+    console.log('post-change state',this.state.food);
   }  
-
+  
+  //Sends request for creating a new Request Component.
   onClick(event) {
   	//Passes request to App for creation of new Request.
   }

@@ -21,11 +21,11 @@ class VolunteerButton extends Component {
      <div>
       'VolunteerButton'
       Where are you grubbing?
-      <input value={this.state.location} onChange={this.onLocationChange} />
+      <input value={this.state.location} onChange={this.onLocationChange.bind(this)} />
       When are you leaving?
-      <input value={this.state.time} onChange={this.onTimeChange} />
+      <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
       Volunteer!
-      <button onClick={this.onClick} />
+      <button onClick={this.onClick.bind(this)} />
      </div>
     );
   }
