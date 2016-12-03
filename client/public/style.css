@@ -15,7 +15,7 @@
 * {
 	font-family: 'Poppins', sans-serif;
 	background-color:#EFEFEF;
-	color:#A9A9A9;
+	color:#808080;
 	font-size:18px;
 }
 .nav-bar {
@@ -38,17 +38,26 @@
 	border-radius:10px;
 }
 
-/* Uncomment if using facebook icon
 .fa {
 	margin:2px,1px,1px,1px;
+	margin-right:4px;
 	color:white;
 	background-color:#3B5998;
-}*/
+}
 
 .red-button {
 	background-color:#ff3b3f;
 	color:white;
+	margin:5px;
 }
 .request-container {
 	padding:15px;
+}
+.karma {
+ 	position:relative;
+ 	height:40px;
+ 	max-width:40px;
+ 	float:right;
+ 	padding:10px;
+ 	margin-right:10px;
 }
