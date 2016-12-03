@@ -5,6 +5,7 @@
 //Standard imports.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import FacebookButton from './Login.js'
 
 
 //Component
@@ -13,7 +14,9 @@ class Profile extends Component {
 
   render() { 
     return ( 
-    	<div>hi</div>
+    	<div className='nav-bar'>
+    	<FacebookButton />
+    	</div>
   );
  }
   

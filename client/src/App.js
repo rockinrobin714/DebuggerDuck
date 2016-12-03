@@ -27,7 +27,7 @@ class Runner extends Component {
     return ( 
      <div>
       <Profile />
-      <VolunteerButton />
+     <VolunteerButton className='blue-container'/>
       <Volunteer />
     </div>
   );
