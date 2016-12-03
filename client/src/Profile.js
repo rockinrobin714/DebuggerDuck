@@ -14,7 +14,7 @@ class Profile extends Component {
   render() { 
     return ( 
       <div>
-       'Profile'
+       <img src="https://static01.nyt.com/images/2011/11/13/magazine/13duck/13duck-jumbo.jpg"/>
      
       </div>
   );

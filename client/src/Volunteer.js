@@ -21,7 +21,7 @@ class Volunteer extends Component {
   render() {
   	return ( 
       <div>
-      'Volunteer'
+      Kevin is going to Chipotle.
       <Request />
       <RequestButton />
      

@@ -26,7 +26,7 @@ class Runner extends Component {
   render() {
     return ( 
      <div>
-      'I am the volunteer/request page. hay'
+      I am the volunteer/request page.
       <Profile />
       <VolunteerButton />
       <Volunteer />

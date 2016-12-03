@@ -17,11 +17,23 @@ class RequestButton extends Component {
   render() {
     return ( 
       <div>
+<<<<<<< fe5e85f99f7c43d55547b78559aefb8a4e867499
         'RequestButton'
         What do you want?
         <input value={this.state.food} onChange={this.onFoodChange.bind(this)} />
         Request!
         <button onClick={this.onClick.bind(this)} />
+||||||| merged common ancestors
+        'RequestButton'
+        What do you want?
+        <input value={this.state.food} onChange={this.onFoodChange} />
+        Request!
+        <button onClick={this.onClick} />
+=======
+        What would you like (name) to pick up for you?
+        <input value={this.state.food} onChange={this.onFoodChange} />
+        <button className="btn btn-info" onClick={this.onClick}>Send your requests</button>
+>>>>>>> Making the buttons pretty
      </div>
     );
   }
