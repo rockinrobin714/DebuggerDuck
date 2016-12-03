@@ -16,7 +16,7 @@
 	font-family: 'Poppins', sans-serif;
 	background-color:#EFEFEF;
 	color:#A9A9A9;
-	font-size:16px;
+	font-size:18px;
 }
 .nav-bar {
 	height:80px;
@@ -47,4 +47,8 @@
 	margin:2px,1px,1px,1px;
 	color:white;
 	background-color:#3B5998;
+}
+.red-button {
+	background-color:#ff3b3f;
+	color:white;
 }

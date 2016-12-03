@@ -23,7 +23,7 @@ class VolunteerButton extends Component {
       <input value={this.state.location} onChange={this.onLocationChange.bind(this)} />
       When are you leaving?
       <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
-      <button className="btn btn-info" onClick={this.onClick.bind(this)}>Volunteer your services </button>
+      <button className="btn red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
      </div>
     );
   }

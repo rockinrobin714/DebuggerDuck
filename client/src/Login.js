@@ -17,12 +17,12 @@ class FacebookButton extends Component {
     //   	this.setState(loggedIn:true);
     //   });
   }
-
+//fb icon = <i className="fa fa-facebook" aria-hidden="true"></i> Log in with facebook
    render(){
-      let loggedInText ='<i className="fa fa-facebook" aria-hidden="true"></i> Log in with facebook';
-      let loggedOutText = 'Log out'
+      let loggedInText = 'Log in with facebook';
+      let loggedOutText = 'Log out';
       return (
-         <div className='fb-button' style={{float:"right"}}></div>
+         <button className='fb-button btn' style={{float:"right"}}>{loggedInText}</button>
       )
    }
    
