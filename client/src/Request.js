@@ -16,9 +16,9 @@ class Request extends Component {
   render() {
     return ( 
       <div>
-        'Request'
-     
-      </div>
+      Pick me up a burrito. - Cat
+     <img className='small-profile-pic' src='http://www.warrenphotographic.co.uk/photography/bigs/08482-Fluffy-ginger-female-kitten.jpg'/>
+     </div>
     );
   }  
   
