@@ -13,10 +13,7 @@ class Profile extends Component {
 
   render() { 
     return ( 
-      <div>
-       'Profile'
-     
-      </div>
+    	<div>hi</div>
   );
  }
   

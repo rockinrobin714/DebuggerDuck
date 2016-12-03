@@ -17,11 +17,10 @@ class RequestButton extends Component {
   render() {
     return ( 
       <div>
-        'RequestButton'
-        What do you want?
+        What would you like (name) to pick up for you?
         <input value={this.state.food} onChange={this.onFoodChange.bind(this)} />
-        Request!
-        <button onClick={this.onClick.bind(this)} />
+        <button className="btn btn-info" onClick={this.onClick.bind(this)}>Send your requests</button>
+
      </div>
     );
   }

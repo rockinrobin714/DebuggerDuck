@@ -19,13 +19,11 @@ class VolunteerButton extends Component {
   render() {
     return ( 
      <div>
-      'VolunteerButton'
       Where are you grubbing?
       <input value={this.state.location} onChange={this.onLocationChange.bind(this)} />
       When are you leaving?
       <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
-      Volunteer!
-      <button onClick={this.onClick.bind(this)} />
+      <button className="btn btn-info" onClick={this.onClick.bind(this)}>Volunteer your services </button>
      </div>
     );
   }
@@ -33,6 +31,7 @@ class VolunteerButton extends Component {
   //
   onLocationChange(event) {
   	this.setState({location: event.target.value});
+    console.log(this.state.location)
   }
 
   onTimeChange(event) {
