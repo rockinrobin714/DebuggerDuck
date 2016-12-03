@@ -29,7 +29,8 @@ class VolunteerButton extends Component {
      </div>
     );
   }
-
+  
+  //
   onLocationChange(event) {
   	this.setState({location: event.target.value});
   }
