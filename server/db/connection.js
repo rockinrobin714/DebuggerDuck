@@ -7,7 +7,7 @@ const mongodbUri = 'mongodb://Robin:robin1@ds119588.mlab.com:19588/debuggerduck'
 mongoose.connect(mongodbUri);
 
 const conn = mongoose.connection;   
-conn.on('error', console.error.bind(console, 'MongoDB connection error:'));  
+conn.on('error', console.error.bind(console, 'MongoDB connection error:'));
  
 module.exports = conn;
 
