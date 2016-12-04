@@ -1,4 +1,4 @@
-//Profile.js displays the username and logout button in the upper right corner.
+//NavBar.js displays the username and logout button in the upper right corner.
 //Renders on Group and Runner.
 //Stretch Goal:  Loads FB picture.
 
@@ -9,7 +9,7 @@ import FacebookButton from './Login.js'
 
 
 //Component
-class Profile extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
 

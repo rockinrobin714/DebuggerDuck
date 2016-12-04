@@ -1,7 +1,7 @@
 
 //Runner.js is the page component for the volunteer/request page.
 //It renders the VolunteerButton and the various Volunteer Components.
-//It also renders Profile.
+//It also renders the navbar.
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -21,6 +21,13 @@ class Runner extends Component {
   constructor(props) {
     super(props);
     
+    this.state = {
+      username: 'Debugger Duck',
+      picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
+      currentGroup: 'Capitol Factory',
+      groups:['Capitol Factory','Ducks'],
+
+    };
   }
   
   render() {
