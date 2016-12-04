@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 
 //Imports for components rendered by Runner.js.
 
-import Profile from './Profile';
+import NavBar from './NavBar';
 import VolunteerButton from './VolunteerButton';
 import Volunteer from './Volunteer';
 import FacebookButton from './Login.js';
@@ -26,7 +26,7 @@ class Runner extends Component {
   render() {
     return ( 
       <div>
-        <Profile />
+        <NavBar />
         <div className='request-container'>
           <VolunteerButton />
           <Volunteer />

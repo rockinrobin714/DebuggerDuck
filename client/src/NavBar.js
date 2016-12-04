@@ -18,25 +18,11 @@ class Profile extends Component {
       karma: 0
     };
   }
-  componentDidMount() {
-    // Not sure how to do this yet
-    // axios.get(`/fb`)
-    //   .then(res => {
-    //     const projects = res.data
-    //   	this.setState(loggedIn:true);
-    //   });
-  }
+
+
+  //Note: Once we get OAUTH up, this button functionality will change
   onButtonClick(){
-  	this.setState({loggedIn = !this.state.loggedIn})
-  	// if (this.state.loggedIn===true){
-	  //     this.setState({
-	  //       loggedIn: false
-	  //     })
-	  //   } else {
-	  //     this.setState({
-	  //       loggedIn: true
-	  //     })
-	  //   }
+  	this.setState({loggedIn: !this.state.loggedIn})
 	  }
 
   render() { 
@@ -59,4 +45,4 @@ class Profile extends Component {
 };
 
 
-export default Profile;
+export default NavBar;
