@@ -19,7 +19,7 @@ class RequestButton extends Component {
       <div>
         What would you like (name) to pick up for you?
         <input value={this.state.food} onChange={this.onFoodChange.bind(this)} />
-        <button className="btn btn-info" onClick={this.onClick.bind(this)}>Send your requests</button>
+        <button className="btn red-button" onClick={this.onClick.bind(this)}>Send your requests</button>
 
      </div>
     );

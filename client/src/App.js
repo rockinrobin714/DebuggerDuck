@@ -25,10 +25,12 @@ class Runner extends Component {
   
   render() {
     return ( 
-     <div>
-      <Profile />
-      <VolunteerButton />
-      <Volunteer />
+      <div>
+        <Profile />
+        <div className='request-container'>
+          <VolunteerButton />
+          <Volunteer />
+        </div>
     </div>
   );
  }
