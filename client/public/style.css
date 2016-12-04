@@ -31,11 +31,12 @@
 	float:right;
 	background-color:#3B5998;
 	color:white;
-	padding:10px;
+	padding:7px;
 	height:40px;
 	margin-top:10px;
 	margin-right:15px;
 	border-radius:10px;
+	border:none;
 }
 
 .fa {
@@ -49,6 +50,8 @@
 	background-color:#ff3b3f;
 	color:white;
 	margin:5px;
+	border:none;
+	border-radius:10px;
 }
 .request-container {
 	padding:15px;
@@ -56,8 +59,84 @@
 .karma {
  	position:relative;
  	height:40px;
- 	max-width:40px;
+ 	white-space:nowrap;
+ 	width:60px;
  	float:right;
  	padding:10px;
- 	margin-right:10px;
+ 	margin-right:60px;
+ 	margin-top:6px;
+ 	background-color:#CAEBF2;
+ 	max-height:70%;
+}
+.username {
+	position:relative;
+ 	height:40px;
+ 	width:150px;
+ 	float:right;
+ 	padding:10px;
+ 	padding-right:50px;
+ 	margin-right:100px;
+ 	background-color:#CAEBF2;
+ 	max-height:70%;
+ 	white-space:nowrap;
+ 	margin-top:6px;
+}
+.nav-bar-spacer {
+	width:200px;
+}
+.welcome {
+	text-align:center;
+	font-size: 60px;
+	position: relative;
+}
+
+.tag-line {
+	text-align: center;
+	font-size:30px;
+	margin-top:10px;
+	position: relative;
+}
+.spacer {
+	height:25vh;
+}
+.fb-button-big{
+	position:relative;
+	text-align:center;
+	height:60px;
+	background-color:#3B5998;
+	color:white;
+	padding:8px;
+	margin-top:20px;
+	border-radius:10px;
+	border:none;
+	font-size:24px;
+}
+.center {
+	text-align:center;
+}
+.greeting {
+	margin-top:10vh;
+	font-size:48px;
+	text-align:center;
+}
+.group-select {
+	text-align:center;
+	padding:20px;
+	font-size:36px;
+}
+.group {
+	position:relative;
+	text-align:center;
+	height:60px;
+	color:white;
+	padding:8px;
+	font-size:24px;
+}
+
+.group-button {
+	border-radius:10px;
+	background-color:#ff3b3f;
+	border:none;
+	padding-left:10px;
+	padding-right:10px;
 }

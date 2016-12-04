@@ -14,13 +14,16 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      loggedIn: this.props.loggedIn,
+      username: this.props.username,
+      picture: this.props.picture,
       karma: 0
     };
   }
 
 
-  //Note: Once we get OAUTH up, this button functionality will change
+  //Note: All this does is toggle loggedIn back and forth so I don't have to manually change App.js's state. 
+  //Once we get OAUTH up, this button functionality will need to change.
   onButtonClick(){
   	this.setState({loggedIn: !this.state.loggedIn})
 	  }
@@ -37,7 +40,8 @@ class NavBar extends Component {
   		return ( 
     	<div className='nav-bar'>
     		<FacebookButton onButtonClick={this.onButtonClick.bind(this)} text={'Log out'}/>
-    		<div className='karma'>Karma:{this.state.karma}</div>
+    		<div className='karma'>Karma: {this.state.karma}</div>
+        <div className='username'>Hello, {this.props.username} </div>
     	</div>
   		);
   	}
