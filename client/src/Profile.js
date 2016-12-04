@@ -27,16 +27,16 @@ class Profile extends Component {
     //   });
   }
   onButtonClick(){
-  	//this.setState({!this.state.loggedIn})
-  	if (this.state.loggedIn===true){
-	      this.setState({
-	        loggedIn: false
-	      })
-	    } else {
-	      this.setState({
-	        loggedIn: true
-	      })
-	    }
+  	this.setState({loggedIn = !this.state.loggedIn})
+  	// if (this.state.loggedIn===true){
+	  //     this.setState({
+	  //       loggedIn: false
+	  //     })
+	  //   } else {
+	  //     this.setState({
+	  //       loggedIn: true
+	  //     })
+	  //   }
 	  }
 
   render() { 
