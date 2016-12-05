@@ -16,7 +16,6 @@ router.get('/volunteer', controller.volunteer.get);
 router.post('/volunteer', controller.volunteer.post);
 
 // User the router to direct GET and POST requests for /request
-router.get('/request', controller.request.get);
 router.post('/request', controller.request.post);
 
 
