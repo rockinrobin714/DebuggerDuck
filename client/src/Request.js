@@ -1,15 +1,11 @@
-//Request.js displays existing food request.
-//Renders once per food request, under the relevant Volunteer.
-
-//Standard Imports.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-//Component
+//Request is pretty simple. It's parent component (request) does all the work for it and funnels down all the info it needs
+//through the props.
 class Request extends Component {
 	constructor(props) {
     super(props);
-
     this.state = {};
   }
 

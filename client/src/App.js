@@ -1,6 +1,15 @@
 //App.js is the top component. It stores all the main data within its state. 
 //It renders 3 different views based on its state (described in detail below).
 //It funnels down user data into its child components.
+//The hierarchy is described below.
+
+//                             App
+//          /             /     |       \
+//  NavBar    LandingPage     Groups    VolunteerRequestContainer
+//       \     /                             |
+//       FacebookButton                    Volunteer
+//                                           |
+//                                         Request
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';

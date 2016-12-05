@@ -1,20 +1,18 @@
-//NavBar.js displays the username and logout button in the upper right corner.
-//Renders on Group and Runner.
-//Stretch Goal:  Loads FB picture.
 
-//Standard imports.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import FacebookButton from './FacebookButton.js'
 
 
-//Component
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loggedIn: false,
+      //I have not yet done anything with the karma besides hard code it as 0 and display it.
+      //This needs to be worked on.
       karma: 0
     };
   }
@@ -28,10 +26,11 @@ class NavBar extends Component {
 	  }
 
   render() { 
+    //This renders differently depending on whether logged in is true or false.
+    //If I manually change true or false, it renders fine. Currently, it isn't rerendering when app.js rerenders, and it should.
   	if(this.state.loggedIn===false){
   		return (
   			<div className='nav-bar'>
-  				
     			<FacebookButton onButtonClick={this.onButtonClick.bind(this)} text={'Log in'}/>
     		</div>
     	)

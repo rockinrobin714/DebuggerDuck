@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import FacebookButton from './FacebookButton.js';
 
+//Not much to this component. Just some minor styling. 
+
 class LandingPage extends Component {
    constructor(props) {
     super(props);
