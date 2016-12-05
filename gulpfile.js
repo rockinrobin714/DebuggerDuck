@@ -9,7 +9,7 @@ var es2015 = require('babel-preset-es2015');
 var reactjsx = require('babel-preset-react');
 
 function compile(watch) {
-  var bundler = browserify('./client/src/index.js', { debug: true }).transform(babel, { presets: [es2015, reactjsx] });
+  var bundler = browserify('./client/src/index.js', { debug: false }).transform(babel, { presets: [es2015, reactjsx] });
 
   function rebundle() {
     bundler.bundle()

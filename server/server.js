@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./util/router.js');
-const db = require('./db/schemas.js')
+const db = require('./db/schemas.js');
 const dbConnection = require('./db/connection.js')
 
 // Use express and export it
@@ -19,6 +19,8 @@ app.use('/dist', express.static(path.join(__dirname, '/../client/dist')));
 // Serve the node modules
 app.use('/lib', express.static(path.join(__dirname, '/../node_modules')));
 
+// Listen for requests on /api and then use the router to determine
+// what happens with the requests
 app.use('/api', router);
 
 // Check to see if there is a port environment variable or just use port 4040 instead
