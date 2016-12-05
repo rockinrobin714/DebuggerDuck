@@ -36,4 +36,4 @@ class NewVolunteer extends Component {
  
 };
 
-export default NewVolunteer;
+export default Volunteer;

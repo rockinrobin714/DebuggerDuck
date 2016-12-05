@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import VolunteerButton from './VolunteerButton';
-import NewVolunteer from './NewVolunteer';
+import Volunteer from './Volunteer';
 
 //Component
 class VolunteerRequestContainer extends Component {
@@ -23,7 +22,7 @@ class VolunteerRequestContainer extends Component {
         <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
         <button className="red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
         {this.state.volunteers.map(volunteer =>
-                <NewVolunteer volunteer={volunteer}/>
+                <Volunteer volunteer={volunteer}/>
               )}
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
