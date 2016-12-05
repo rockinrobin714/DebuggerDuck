@@ -31,6 +31,7 @@ class VolunteerRequestContainer extends Component {
         {this.state.volunteers.map(volunteer =>
                 <Volunteer 
                 //I put math.random because react got angry at me
+                postRequest={this.props.postRequest}
                 key={Math.random()}
                 username={this.state.username}
                 picture={this.state.picture}

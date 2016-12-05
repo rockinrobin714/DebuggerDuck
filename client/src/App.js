@@ -100,7 +100,7 @@ class Runner extends Component {
     axios.get('/api/login') 
       .then(response => {
         console.log('Login successful? ', response);
-        this.setState({LoggedIn: true});
+        this.setState({loggedIn: true});
       })
       .catch(error => {
         console.log('Error occurred during login ', error);
@@ -113,7 +113,7 @@ class Runner extends Component {
     axios.post('/api/login')
       .then(response => {
         console.log('Logged out:', response);
-        this.setState({LoggedIn: false});
+        this.setState({loggedIn: false});
       })
       .catch(error => {
         console.log('Error while logging out: ', error);
@@ -147,7 +147,7 @@ class Runner extends Component {
       food: food
     })
       .then(response => {
-        console.log('Request submitted: ', response.body);
+        console.log('Request submitted: ', response.data);
       })
       .catch(ferror => {
         console.log('Error while submitting food request:', error);
@@ -168,7 +168,6 @@ class Runner extends Component {
           <NavBar
           //pass in the postLogin and postLogout functions
             //also pass current login state.
-          postLogout={this.postLogout.bind(this)}
           postLogin={this.postLogin.bind(this)} 
           loggedIn={false} />
           

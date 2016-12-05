@@ -24,7 +24,7 @@ class NavBar extends Component {
   
   //login and logOut invoke the functions passed from App.
   login(){
-    this.props.postLogin();
+    
   	this.setState({loggedIn: true});
     console.log('Logout triggered from Navbar');
     this.props.postLogin();

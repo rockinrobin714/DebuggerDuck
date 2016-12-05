@@ -23,11 +23,14 @@ class Volunteer extends Component {
     //every time the user types a new letter, the state is changed to the current input
     this.setState({text: event.target.value});
   }
-  onSubmit(){
-    //set the text back to '' and add the info to the requests array
+     //set the text back to '' and add the info to the requests array
     //Note: for some reason, .push wouldn't work and I had to use .concat
+      //run postRequest to generate a new request.
+  onSubmit(){
+    this.props.postRequest(this.state.username, this.props.volunteer, this.state.text);s
     this.setState({text:'', requests: this.state.requests.concat({username: this.state.username, picture: this.state.picture, text: this.state.text})});
   }
+
   render() {
   	return ( 
       <div>
