@@ -48,6 +48,7 @@
 }
 
 .red-button {
+	position:relative;
 	background-color:#ff3b3f;
 	color:white;
 	margin:8px;

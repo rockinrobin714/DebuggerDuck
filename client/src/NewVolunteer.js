@@ -6,11 +6,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-//Import Relevant Components
 import Request from './Request';
-import RequestButton from './RequestButton';
 
-//Component
 class NewVolunteer extends Component {
   constructor(props) {
     super(props);
@@ -26,9 +23,13 @@ class NewVolunteer extends Component {
         <img className='small-profile-pic' src={this.props.volunteer.picture}/>
         {this.props.volunteer.name} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
         {this.state.requests.map(request =>
-                <Request request={requests}/>
+                <Request request={request}/>
               )}
-        <RequestButton />
+        <div>
+          What would you like {this.props.volunteer.name} to pick up for you? 
+          <input /> 
+          <button className="red-button">Send your requests</button>
+        </div>
      </div>
   );
  }

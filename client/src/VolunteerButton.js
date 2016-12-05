@@ -20,7 +20,6 @@ class VolunteerButton extends Component {
     return ( 
       <div>
         <button className="red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
-        <div className='center'><button className='red-button new-group' onClick={this.props.selectNewGroup}>Select a new group</button></div>
      </div>
     );
   }
