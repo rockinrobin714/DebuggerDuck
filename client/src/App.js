@@ -58,14 +58,18 @@ class Runner extends Component {
     this.setState({loggedIn: true})
     //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
     }
+  logOut(){
+    this.setState({loggedIn: false})
+    //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
+    }
   render() {
     if (this.state.loggedIn===false){
       return (
         <div>
           <NavBar 
           //The navbar doesn't need to be sent any info at this level (I don't think?) besides whether it's logged in or not
+          login={this.login.bind(this)}
           loggedIn={false} />
-
           <LandingPage login={this.login.bind(this)}/>
         </div>
         )
@@ -75,7 +79,8 @@ class Runner extends Component {
           <div>
           <NavBar 
           //Funnel down info into the navbar
-          loggedIn={true} 
+          loggedIn={true}
+          logOut={this.logOut.bind(this)} 
           username={this.state.username} 
           picture={this.state.picture}/>
           <div className='greeting'> Hi, {this.state.username}.</div>
@@ -95,7 +100,8 @@ class Runner extends Component {
           <div>
             <NavBar 
             //Again, funneling info to the navbar.
-              loggedIn={true} 
+              loggedIn={true}
+              logOut={this.logOut.bind(this)} 
               username={this.state.username} 
               picture={this.state.picture} />
             <VolunteerRequestsContainer 
