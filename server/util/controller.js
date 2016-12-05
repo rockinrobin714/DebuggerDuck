@@ -16,11 +16,11 @@ module.exports = {
   group: {
     // Group controller functions for GET
     get: (req, res) => {
-      
+      req.body.data
     },
     // Group controller functions for GET
     post: (req, res) => {
-      // 
+      // Look in the database to see if there is a Group with the given name already
       db.Group.findOne({'name': 'HackReactor'}).exec()
       .then((data) => {
         console.log(data)
@@ -28,9 +28,11 @@ module.exports = {
           new db.Group({name: 'HackReactor'}).save()
           .then((data) => {
             console.log(data);
+            res.sendStatus(201);
           })
           .catch((err) => {
             console.error(err);
+            res.sendStatus(400);
           })
         }
         else {
