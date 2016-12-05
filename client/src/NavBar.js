@@ -21,14 +21,19 @@ class NavBar extends Component {
   
   //Note: All this does is toggle loggedIn back and forth so I don't have to manually change App.js's state. 
   //Once we get OAUTH up, this button functionality will need to change.
+  
+  //login and logOut invoke the functions passed from App.
   login(){
-  	this.setState({loggedIn: true})
-    this.props.login();
+    
+  	this.setState({loggedIn: true});
+    console.log('Logout triggered from Navbar');
+    this.props.postLogin();
 	 }
+  //logout updates local state and runs postLogout, inherited from App. 
   logOut(){
     this.setState({loggedIn: false})
     console.log('log out triggered')
-    this.props.logOut();
+    this.props.postLogout();
   }
   render() { 
     //This renders differently depending on whether logged in is true or false.

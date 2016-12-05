@@ -1,4 +1,4 @@
-//Login.js displays a facebook button
+//FacebookButton.js displays a facebook button
 import React, {Component} from 'react';
 
 class FacebookButton extends Component {
