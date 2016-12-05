@@ -20,7 +20,7 @@ class VolunteerRequestContainer extends Component {
         <input value={this.state.location} onChange={this.onLocationChange.bind(this)} />
         When are you leaving?
         <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
-        <button className="red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
+        <button className="red-button" onClick={this.onSubmit.bind(this)}>Volunteer your services </button>
         {this.state.volunteers.map(volunteer =>
                 <Volunteer volunteer={volunteer}/>
               )}
@@ -36,11 +36,12 @@ class VolunteerRequestContainer extends Component {
   }
 
   onTimeChange(event) {
+
   	this.setState({time: event.target.value});
   }
 
-  onClick(event) {
-  	//Passes request to app.
+  onSubmit(event) {
+  	this.setState({volunteers: this.state.volunteers.concat({name: 'Cat', picture: 'http://mypetforumonline.com/wp-content/uploads/2014/09/8055895_orig.jpg', location: 'Chipotle', time:'3:00'})})
   }
   	
 };

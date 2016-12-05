@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 import Request from './Request';
 
-class NewVolunteer extends Component {
+class Volunteer extends Component {
   constructor(props) {
     super(props);
 
