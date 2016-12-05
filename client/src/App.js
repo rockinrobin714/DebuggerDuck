@@ -37,6 +37,8 @@ class Runner extends Component {
       groupChosen: false,
       currentGroup: 'Capital Factory',
       groups:['Capital Factory','Ducks'],
+      //currentData holds all volunteers and requests from day.
+      currentData:[],
 
     };
   }
@@ -53,6 +55,20 @@ class Runner extends Component {
   selectDifferentGroup(){
     this.setState({groupChosen:false})
     //this rerenders the app to go back to option 2 (mentioned above)
+  }  
+  //Commented out for now.
+  // login(){
+  //   this.setState({loggedIn: true})
+  //   //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
+  //   }
+  //getGroups requesta a list of all groups from the server.
+    //Then updates groups in state.
+  getGroups(){
+    axios.get('/api/group')
+      .then(function (response) {
+        console.log('Getting Groups? ',response.body.data);
+        this.setState({groups:response.body.data});
+    })
   }
   login(){
     this.setState({loggedIn: true})
@@ -62,6 +78,46 @@ class Runner extends Component {
     this.setState({loggedIn: false})
     //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
     }
+
+  //Gets all volunteers for today, and all associated requests.
+    //updates currentData in state, which is then passed to VolunteerRequest Container.
+  getCurrentData() {
+    axios.get('/api/volunteer')
+      .then(function(response) {
+        console.log('Getting Current Data?', response.body.data);
+        this.setState({currentData: response.body.data});
+      })
+  }
+  //postLogin sends login data to the server.
+    //Currently designed to get redirected to passport.  May need to be updated.
+    //In progress.
+  postLogin() {
+    axios.get('/api/login') 
+      .then(function(response) {
+        console.log('Login successful? ', response);
+        this.setState({LoggedIn: true});
+      })
+      .catch(function(error) {
+        console.log('Error occurred during login ', error);
+
+      })
+  }
+  //postVolunteer POSTS a new volunteer to the server.
+    //Accepts a location, a time, and a username, all strings for simplicity.
+  postVolunteer(username, location, time) {
+    axios.post('/api/volunteer', {
+    username: username,
+    location: location,
+    time:  time
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
+
   render() {
     if (this.state.loggedIn===false){
       return (
@@ -107,7 +163,8 @@ class Runner extends Component {
             <VolunteerRequestsContainer 
             //This also needs to be funneled info
               username={this.state.username} 
-              picture={this.state.picture} 
+              picture={this.state.picture}
+              currentData={this.state.currentData}
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
