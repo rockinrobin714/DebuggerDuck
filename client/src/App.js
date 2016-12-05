@@ -11,7 +11,6 @@ import ReactDOM from 'react-dom';
 //Imports for components rendered by Runner.js.
 
 import NavBar from './NavBar';
-import FacebookButton from './Login.js';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
@@ -41,7 +40,7 @@ class Runner extends Component {
   selectGroup(){
     this.setState({groupChosen: true})
   }
-  selectNewGroup(){
+  selectDifferentGroup(){
     this.setState({groupChosen:false})
   }
   login(){
@@ -71,7 +70,7 @@ class Runner extends Component {
         return ( 
           <div>
             <NavBar loggedIn={true} username={this.state.username} picture={this.state.picture}/>
-            <VolunteerRequestsContainer />
+            <VolunteerRequestsContainer selectDifferentGroup={this.selectDifferentGroup.bind(this)}/>
           </div>
           )
         }

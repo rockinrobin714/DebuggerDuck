@@ -5,7 +5,7 @@
 //Standard imports.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import FacebookButton from './Login.js'
+import FacebookButton from './FacebookButton.js'
 
 
 //Component

@@ -10,14 +10,14 @@ class Request extends Component {
 	constructor(props) {
     super(props);
 
-    this.state = {person: '', request: ''};
+    this.state = {};
   }
 
   render() {
     return ( 
       <div>
       Pick me up a burrito. - Cat
-     <img className='small-profile-pic' src='http://www.warrenphotographic.co.uk/photography/bigs/08482-Fluffy-ginger-female-kitten.jpg'/>
+     <img className='small-profile-pic' src=''/>
      </div>
     );
   }  

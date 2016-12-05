@@ -11,19 +11,23 @@ import Request from './Request';
 import RequestButton from './RequestButton';
 
 //Component
-class Volunteer extends Component {
+class NewVolunteer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      requests:[{username:'Cat', picture:'http://www.warrenphotographic.co.uk/photography/bigs/08482-Fluffy-ginger-female-kitten.jpg', text:'Pick me up a burrito'}]
+    };
   }
 
   render() {
   	return ( 
       <div>
-        <img className='small-profile-pic' src='http://mypetforumonline.com/wp-content/uploads/2014/09/8055895_orig.jpg'/>
-        Dog is going to Chipotle at 3:00.
-        <Request />
+        <img className='small-profile-pic' src={this.props.volunteer.picture}/>
+        {this.props.volunteer.name} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
+        {this.state.requests.map(request =>
+                <Request request={requests}/>
+              )}
         <RequestButton />
      </div>
   );

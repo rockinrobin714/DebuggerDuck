@@ -1,6 +1,6 @@
 //Login.js displays a facebook button
 import React, {Component} from 'react';
-import FacebookButton from './Login.js';
+import FacebookButton from './FacebookButton.js';
 
 class LandingPage extends Component {
    constructor(props) {
