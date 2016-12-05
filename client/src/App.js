@@ -1,14 +1,10 @@
-
-//Runner.js is the page component for the volunteer/request page.
-//It renders the VolunteerButton and the various Volunteer Components.
-//It also renders the navbar.
+//App.js is the top component. It stores all the main data within its state. 
+//It renders 3 different views based on its state (described in detail below).
+//It funnels down user data into its child components.
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-//Standard imports.
-
-//Imports for components rendered by Runner.js.
 
 import NavBar from './NavBar';
 import LandingPage from './LandingPage.js';
@@ -16,11 +12,15 @@ import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 
 
-//Component
 class Runner extends Component {
   constructor(props) {
     super(props);
-    
+//For now, username, picture, currentGroup, groups are all hard coded in.
+//Eventually, we will get username and picture from fb
+//And groups from the DB
+//And currentGroup from selecting the button
+//I forgot to add the currentGroup functionality we can maybe render it in the request/volunteer container later, 
+//But right now, it does nothing
     this.state = {
       loggedIn: false,
       username: 'Debugger Duck',
@@ -39,18 +39,24 @@ class Runner extends Component {
 // (Which in turn, will render the request component(s))
   selectGroup(){
     this.setState({groupChosen: true})
+    //flesh this out
   }
   selectDifferentGroup(){
     this.setState({groupChosen:false})
+    //this rerenders the app to go back to option 2 (mentioned above)
   }
   login(){
     this.setState({loggedIn: true})
+    //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
     }
   render() {
     if (this.state.loggedIn===false){
       return (
         <div>
-          <NavBar loggedIn={false} />
+          <NavBar 
+          //The navbar doesn't need to be sent any info at this level (I don't think?) besides whether it's logged in or not
+          loggedIn={false} />
+
           <LandingPage login={this.login.bind(this)}/>
         </div>
         )
@@ -58,11 +64,17 @@ class Runner extends Component {
       if (this.state.groupChosen===false){
         return (
           <div>
-          <NavBar loggedIn={true} username={this.state.username} picture={this.state.picture}/>
+          <NavBar 
+          //Funnel down info into the navbar
+          loggedIn={true} 
+          username={this.state.username} 
+          picture={this.state.picture}/>
           <div className='greeting'> Hi, {this.state.username}.</div>
           <div className='group-select'>Please select a group.</div>
             {this.state.groups.map(group =>
+              //This maps out all the groups into a list. 
               <Groups 
+              //If I don't put a key in, react gets angry with me.
               key={group}
               selectGroup={this.selectGroup.bind(this)} 
               group={group} />
@@ -73,12 +85,15 @@ class Runner extends Component {
         return ( 
           <div>
             <NavBar 
+            //Again, funneling info to the navbar.
               loggedIn={true} 
               username={this.state.username} 
               picture={this.state.picture} />
             <VolunteerRequestsContainer 
+            //This also needs to be funneled info
               username={this.state.username} 
               picture={this.state.picture} 
+              //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
           )
