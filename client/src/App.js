@@ -42,12 +42,12 @@ class Runner extends Component {
 
     };
   }
-//There are three possible options when we reach the home page. 
-//For each option a navbar is rendered regardless of state.
-//1. LoggedIn is false -> render the Landing page component.
-//2. LoggedIn is true but group chosen is false -> render the groups component.
-//3. LoggedIn is true and groups chosen is true -> render the Volunteer button and volunteer component
-// (Which in turn, will render the request component(s))
+  ///Run getGroups and getCurrentData on component load.
+  componentDidMount() {
+    getGroups();
+    getCurrentData();
+  }
+
   selectGroup(){
     this.setState({groupChosen: true})
     //flesh this out
@@ -56,28 +56,20 @@ class Runner extends Component {
     this.setState({groupChosen:false})
     //this rerenders the app to go back to option 2 (mentioned above)
   }  
-  //Commented out for now.
-  // login(){
-  //   this.setState({loggedIn: true})
-  //   //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
-  //   }
-  //getGroups requesta a list of all groups from the server.
-    //Then updates groups in state.
+
+
+
+  //Gets full list of available groups and updates state.
   getGroups(){
     axios.get('/api/group')
       .then(function (response) {
         console.log('Getting Groups? ',response.body.data);
         this.setState({groups:response.body.data});
     })
+      .catch(function (error) {
+        console.log('Error while getting groups: ', error);
+      })
   }
-  login(){
-    this.setState({loggedIn: true})
-    //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
-    }
-  logOut(){
-    this.setState({loggedIn: false})
-    //This needs to be changed once we get OAuth up and working. Right now, clicking logs you in without authentication
-    }
 
   //Gets all volunteers for today, and all associated requests.
     //updates currentData in state, which is then passed to VolunteerRequest Container.
@@ -87,7 +79,11 @@ class Runner extends Component {
         console.log('Getting Current Data?', response.body.data);
         this.setState({currentData: response.body.data});
       })
+      .catch(function(error) {
+        console.log('Error while getting current data: ', error);
+      })
   }
+
   //postLogin sends login data to the server.
     //Currently designed to get redirected to passport.  May need to be updated.
     //In progress.
@@ -99,9 +95,22 @@ class Runner extends Component {
       })
       .catch(function(error) {
         console.log('Error occurred during login ', error);
-
       })
   }
+
+  //postLogout sends request to server to log out user and kill session.
+    //As above, may need to be updated.
+  postLogout() {
+    axios.post('/api/login')
+      .then(function(response) {
+        console.log('Logged out:', response);
+        this.setState({LoggedIn: false});
+      })
+      .catch(function(error) {
+        console.log('Error while logging out: ', error);
+      })
+  }
+
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
   postVolunteer(username, location, time) {
@@ -111,12 +120,37 @@ class Runner extends Component {
     time:  time
   })
   .then(function (response) {
-    console.log(response);
+    console.log('Volunteer posted! ',response);
   })
   .catch(function (error) {
-    console.log(error);
+    console.log('Error while posting Volunteer: ',error);
   });
   }
+  //postRequest sends a food request to the server.
+    //Accepts username of user requesting food
+      //volunter == username of the volunteer,
+      //food is from input box
+      //All strings
+  postRequest(username, volunteer, food) {
+    axios.post('/api/request') {
+      username: username,
+      volunteer: volunteer,
+      food: food
+    }
+      .then(function(response) {
+        console.log('Request submitted: ', response.body);
+      })
+      .catch(function(error) {
+        console.log('Error while submitting food request:', error);
+      })
+  }
+
+  //There are three possible options when we reach the home page. 
+//For each option a navbar is rendered regardless of state.
+//1. LoggedIn is false -> render the Landing page component.
+//2. LoggedIn is true but group chosen is false -> render the groups component.
+//3. LoggedIn is true and groups chosen is true -> render the Volunteer button and volunteer component
+// (Which in turn, will render the request component(s))
 
   render() {
     if (this.state.loggedIn===false){
@@ -136,7 +170,8 @@ class Runner extends Component {
           <NavBar 
           //Funnel down info into the navbar
           loggedIn={true}
-          logOut={this.logOut.bind(this)} 
+          postLogout={this.postLogout.bind(this)}
+          postLogin={this.postLogin.bind(this)}
           username={this.state.username} 
           picture={this.state.picture}/>
           <div className='greeting'> Hi, {this.state.username}.</div>
@@ -158,6 +193,7 @@ class Runner extends Component {
             //Again, funneling info to the navbar.
               loggedIn={true}
               logOut={this.logOut.bind(this)} 
+              postLogout={this.postLogout.bind(this)} //Passing the postLogout function to Navbar.
               username={this.state.username} 
               picture={this.state.picture} />
             <VolunteerRequestsContainer 
@@ -165,6 +201,9 @@ class Runner extends Component {
               username={this.state.username} 
               picture={this.state.picture}
               currentData={this.state.currentData}
+              postVolunteer={this.postVolunteer.bind(this)}
+              postRequest={this.postRequest.bind(this)}
+
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>

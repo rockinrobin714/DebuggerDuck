@@ -50,8 +50,9 @@ class VolunteerRequestContainer extends Component {
   onTimeChange(event) {
   	this.setState({time: event.target.value});
   }
-
+  //Runs postVolunteer (inherited from App) with appropriate data, then resets state.
   onSubmit(event) {
+    this.props.postVolunteer(this.state.username, this.state.location, this.state.time);
     //When the user clicks submit, time and location are set to '' and the info is saved into the this.state.volunteers array
     //Change this later to add database functionality
   	this.setState({time:'', location:'', volunteers: this.state.volunteers.concat({name: this.state.username, picture: this.state.picture, location: this.state.location, time: this.state.time})});
