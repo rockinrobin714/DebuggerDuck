@@ -1,5 +1,7 @@
 const db = require('../db/schemas.js');
 
+
+// Returns an object with a key of data
 const buildResObj = function (data) {
   return {
     data: data
@@ -77,8 +79,26 @@ module.exports = {
     },
     // Volunteer controller functions for POST
     post: (req, res) => {
-      console.log('Volunteer POST');
-      res.send(200);
+      req.body.data = {
+        username: 'wschwanke',
+        location: 'Chipotle',
+        time: 'Eleventee PM',
+        groupId: 'f329j023dkwdk0w',
+        requests: []
+      }
+      new db.Order({
+        order_user: req.body.data.username,
+        location: req.body.data.location,
+        time: req.body.data.time,
+        group_id: req.body.data.groupId,
+        requests: req.body.data.requests
+      }).save()
+      .then((data) => {
+        res.status(201).send(data);
+      })
+      .catch((err) => {
+        res.sendStatus(400)
+      })
     }
   },
   request: {

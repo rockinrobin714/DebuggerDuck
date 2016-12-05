@@ -45,11 +45,12 @@ const GroupSchema = new Schema ({
 
 const OrderSchema = new Schema ({
 	// Will automatically generate order id
-	createdAt: { type : Date, default: Date.now },
+	order_user: String,
 	location: String,
 	time: String,
 	group_id: String,
-	requests: [{user_id: String, text: String}]
+	requests: [{user_id: String, text: String, default: []}],
+	createdAt: { type : Date, default: Date.now }
 })
 
 db.User = mongoose.model('user', UserSchema);
