@@ -42,15 +42,20 @@ class Runner extends Component {
       currentData:[],
 
     };
-    //componentDidMount();
+    //Binding context for functions that get passed down.
+    this.getGroups = this.getGroups.bind(this);
+    this.getCurrentData = this.getCurrentData.bind(this);
+    this.postLogin = this.postLogin.bind(this);
+    this.postLogout = this.postLogout.bind(this);
   }
+
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
     console.log('Component mounted.');
    this.getGroups();
    this.getCurrentData();
   }
-
+  
   selectGroup(){
     this.setState({groupChosen: true})
     //flesh this out
@@ -65,24 +70,25 @@ class Runner extends Component {
   //Gets full list of available groups and updates state.
   getGroups(){
     axios.get('/api/group')
-      .then(function (response) {
-        console.log('Getting Groups? ',response);
-        this.setState({groups:response});
+      .then( response => {
+        console.log('Getting Groups? ', response.data.data);
+        this.setState( {groups:response.data.data} );
+        //console.log('Group State?',this.state.groups);
     })
-      .catch(function (error) {
+      .catch(error => {
         console.log('Error while getting groups: ', error);
-      })
+    })
   }
 
   // //Gets all volunteers for today, and all associated requests.
   //   //updates currentData in state, which is then passed to VolunteerRequest Container.
   getCurrentData() {
     axios.get('/api/volunteer')
-      .then(function(response) {
-        console.log('Getting Current Data?', response;
-        this.setState({currentData: response.body.data});
+      .then(response => {
+        console.log('Getting Current Data?', response.data.data);
+        this.setState({currentData: response.data.data});
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log('Error while getting current data: ', error);
       })
   }
@@ -92,11 +98,11 @@ class Runner extends Component {
     //In progress.
   postLogin() {
     axios.get('/api/login') 
-      .then(function(response) {
+      .then(response => {
         console.log('Login successful? ', response);
         this.setState({LoggedIn: true});
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log('Error occurred during login ', error);
       })
   }
@@ -105,11 +111,11 @@ class Runner extends Component {
     //As above, may need to be updated.
   postLogout() {
     axios.post('/api/login')
-      .then(function(response) {
+      .then(response => {
         console.log('Logged out:', response);
         this.setState({LoggedIn: false});
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log('Error while logging out: ', error);
       })
   }
@@ -122,10 +128,10 @@ class Runner extends Component {
     location: location,
     time:  time
     })
-    .then(function (response) {
+    .then(response => {
       console.log('Volunteer posted! ',response);
     })
-    .catch(function (error) {
+    .catch(error => {
       console.log('Error while posting Volunteer: ',error);
     });
   }
@@ -140,10 +146,10 @@ class Runner extends Component {
       volunteer: volunteer,
       food: food
     })
-      .then(function(response) {
+      .then(response => {
         console.log('Request submitted: ', response.body);
       })
-      .catch(function(error) {
+      .catch(ferror => {
         console.log('Error while submitting food request:', error);
       })
   }
@@ -186,9 +192,9 @@ class Runner extends Component {
               //This maps out all the groups into a list. 
               <Groups 
               //If I don't put a key in, react gets angry with me.
-              key={group}
+              key={group.name}
               selectGroup={this.selectGroup.bind(this)} 
-              group={group} />
+              group={group.name} />
             )}
           </div>
           )
