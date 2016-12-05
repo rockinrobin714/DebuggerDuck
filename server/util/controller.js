@@ -30,6 +30,7 @@ module.exports = {
       console.log("This is user: ", req.user)
     }
   },
+
   group: {
     // Group controller functions for GET
     get: (req, res) => {
@@ -48,12 +49,10 @@ module.exports = {
       // Look in the database to see if there is a Group with the given name already
       db.Group.findOne({name: req.body.data.groupName}).exec()
       .then((data) => {
-        console.log(data)
         // If we don't get any data, add the request body into the database
         if(!data) {
           new db.Group({name: req.body.data.groupName}).save()
           .then((data) => {
-            console.log(data);
             // Send a 201 status that it was completed
             res.sendStatus(201);
           })
@@ -73,6 +72,7 @@ module.exports = {
       })
     }
   },
+
   volunteer: {
     // Volunteer controller functions for GET
     get: (req, res) => {
@@ -110,11 +110,18 @@ module.exports = {
       })
     }
   },
+
   request: {
     // Request controller functions for POST
     post: (req, res) => {
       console.log('Request POST');
-      res.send(200);
+      res.sendStatus(200);
+    }
+  },
+
+  logout: {
+    get: (req, res) => {
+      res.sendStatus(200);
     }
   }
 }
