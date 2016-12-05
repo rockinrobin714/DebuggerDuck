@@ -168,3 +168,20 @@
 	background-color:#FFC78F;
 	padding-left:60px;
 }
+
+.modal-inside{
+	background-color:#EFEFEF;
+	text-align:left;
+}
+.modal-input {
+	padding:3px;
+	margin-top:8px;
+	width:370px;
+}
+.second-input {
+	margin-left:94px;
+	margin-bottom:8px;
+}
+.third-input {
+	margin-bottom:8px;
+}
