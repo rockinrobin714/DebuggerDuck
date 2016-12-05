@@ -11,11 +11,10 @@ import ReactDOM from 'react-dom';
 //Imports for components rendered by Runner.js.
 
 import NavBar from './NavBar';
-import VolunteerButton from './VolunteerButton';
-import Volunteer from './Volunteer';
 import FacebookButton from './Login.js';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
+import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 
 
 //Component
@@ -24,7 +23,7 @@ class Runner extends Component {
     super(props);
     
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       groupChosen: false,
@@ -39,12 +38,21 @@ class Runner extends Component {
 //2. LoggedIn is true but group chosen is false -> render the groups component.
 //3. LoggedIn is true and groups chosen is true -> render the Volunteer button and volunteer component
 // (Which in turn, will render the request component(s))
+  selectGroup(){
+    this.setState({groupChosen: true})
+  }
+  selectNewGroup(){
+    this.setState({groupChosen:false})
+  }
+  login(){
+    this.setState({loggedIn: true})
+    }
   render() {
     if (this.state.loggedIn===false){
       return (
         <div>
           <NavBar loggedIn={false} />
-          <LandingPage />
+          <LandingPage login={this.login.bind(this)}/>
         </div>
         )
     } else {
@@ -55,7 +63,7 @@ class Runner extends Component {
           <div className='greeting'> Hi, {this.state.username}.</div>
           <div className='group-select'>Please select a group.</div>
             {this.state.groups.map(group =>
-              <Groups group={group}/>
+              <Groups selectGroup={this.selectGroup.bind(this)} group={group}/>
             )}
           </div>
           )
@@ -63,10 +71,7 @@ class Runner extends Component {
         return ( 
           <div>
             <NavBar loggedIn={true} username={this.state.username} picture={this.state.picture}/>
-            <div className='request-container'>
-              <VolunteerButton />
-              <Volunteer />
-            </div>
+            <VolunteerRequestsContainer />
           </div>
           )
         }

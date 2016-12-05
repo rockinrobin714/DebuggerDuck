@@ -12,11 +12,11 @@ class FacebookButton extends Component {
    render(){
       if (this.props.position==='bottom'){
       	return (
-      		<div className='center'><button onClick={this.props.onButtonClick} className='fb-button-big '><i className="fa fa-facebook" aria-hidden="true">  </i>{this.props.text}</button></div>
+      		<div className='center'><button onClick={this.props.login} className='fb-button-big '><i className="fa fa-facebook" aria-hidden="true">  </i>Sign up now with Facebook</button></div>
       		)
       } else{
 	      return (
-	         <button onClick={this.props.onButtonClick} className='fb-button'><i className="fa fa-facebook" aria-hidden="true">  </i>{this.props.text}</button>
+	         <button onClick={this.props.onButtonClick} className='fb-button'><i className="fa fa-facebook" aria-hidden="true"></i>&nbsp;{this.props.text}</button>
 	      )
 	   }
 	}

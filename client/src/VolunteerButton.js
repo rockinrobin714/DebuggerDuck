@@ -18,28 +18,11 @@ class VolunteerButton extends Component {
   
   render() {
     return ( 
-     <div>
-      Where are you grubbing?
-      <input value={this.state.location} onChange={this.onLocationChange.bind(this)} />
-      When are you leaving?
-      <input value={this.state.time} onChange={this.onTimeChange.bind(this)} />
-      <button className="btn red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
+      <div>
+        <button className="red-button" onClick={this.onClick.bind(this)}>Volunteer your services </button>
+        <div className='center'><button className='red-button new-group' onClick={this.props.selectNewGroup}>Select a new group</button></div>
      </div>
     );
-  }
-  
-  //
-  onLocationChange(event) {
-  	this.setState({location: event.target.value});
-    console.log(this.state.location)
-  }
-
-  onTimeChange(event) {
-  	this.setState({time: event.target.value});
-  }
-
-  onClick(event) {
-  	//Passes request to app.
   }
   	
 };

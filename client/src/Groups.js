@@ -9,7 +9,7 @@ class Groups extends Component {
    render(){
       
       return (
-         <div className='group'><button className='group-button'>{this.props.group}</button></div>
+         <div className='group' onClick={this.props.selectGroup}><button className='group-button'>{this.props.group}</button></div>
       )
    }
    

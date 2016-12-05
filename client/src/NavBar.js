@@ -14,14 +14,13 @@ class NavBar extends Component {
     super(props);
 
     this.state = {
-      loggedIn: this.props.loggedIn,
-      username: this.props.username,
-      picture: this.props.picture,
+      loggedIn: false,
       karma: 0
     };
   }
 
-
+  //Note: Navbar does not rerender when the app renders. How can we change this??
+  
   //Note: All this does is toggle loggedIn back and forth so I don't have to manually change App.js's state. 
   //Once we get OAUTH up, this button functionality will need to change.
   onButtonClick(){
@@ -33,7 +32,7 @@ class NavBar extends Component {
   		return (
   			<div className='nav-bar'>
   				
-    			<FacebookButton onButtonClick={this.onButtonClick.bind(this)} text={'Sign up with Facebook'}/>
+    			<FacebookButton onButtonClick={this.onButtonClick.bind(this)} text={'Log in'}/>
     		</div>
     	)
   	} else {
@@ -41,7 +40,8 @@ class NavBar extends Component {
     	<div className='nav-bar'>
     		<FacebookButton onButtonClick={this.onButtonClick.bind(this)} text={'Log out'}/>
     		<div className='karma'>Karma: {this.state.karma}</div>
-        <div className='username'>Hello, {this.props.username} </div>
+        <img className='nav-pic' src={this.props.picture}/>
+        <div className='username'>{this.props.username} </div>
     	</div>
   		);
   	}

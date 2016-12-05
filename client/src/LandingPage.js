@@ -15,7 +15,7 @@ class LandingPage extends Component {
       		<div className='spacer'></div>
         	<div className='welcome'>Welcome to Food Runner.</div>
         	<div className='tag-line'>Help your team. &nbsp; Help yourself. &nbsp; Eat real food.</div> 
-        	<FacebookButton position={'bottom'} text={'Sign up now'}/>
+        	<FacebookButton login={this.props.login} position={'bottom'}/>
         </div>	
       )
    }
