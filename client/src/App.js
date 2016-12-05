@@ -62,15 +62,24 @@ class Runner extends Component {
           <div className='greeting'> Hi, {this.state.username}.</div>
           <div className='group-select'>Please select a group.</div>
             {this.state.groups.map(group =>
-              <Groups selectGroup={this.selectGroup.bind(this)} group={group}/>
+              <Groups 
+              key={group}
+              selectGroup={this.selectGroup.bind(this)} 
+              group={group} />
             )}
           </div>
           )
       } else {
         return ( 
           <div>
-            <NavBar loggedIn={true} username={this.state.username} picture={this.state.picture}/>
-            <VolunteerRequestsContainer selectDifferentGroup={this.selectDifferentGroup.bind(this)}/>
+            <NavBar 
+              loggedIn={true} 
+              username={this.state.username} 
+              picture={this.state.picture} />
+            <VolunteerRequestsContainer 
+              username={this.state.username} 
+              picture={this.state.picture} 
+              selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
           )
         }
