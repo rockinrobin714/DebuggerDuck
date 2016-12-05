@@ -13,6 +13,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 
 import NavBar from './NavBar';
@@ -31,7 +32,7 @@ class Runner extends Component {
 //I forgot to add the currentGroup functionality we can maybe render it in the request/volunteer container later, 
 //But right now, it does nothing
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       groupChosen: false,
@@ -41,11 +42,13 @@ class Runner extends Component {
       currentData:[],
 
     };
+    //componentDidMount();
   }
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
-    getGroups();
-    getCurrentData();
+    console.log('Component mounted.');
+   this.getGroups();
+   this.getCurrentData();
   }
 
   selectGroup(){
@@ -63,20 +66,20 @@ class Runner extends Component {
   getGroups(){
     axios.get('/api/group')
       .then(function (response) {
-        console.log('Getting Groups? ',response.body.data);
-        this.setState({groups:response.body.data});
+        console.log('Getting Groups? ',response);
+        this.setState({groups:response});
     })
       .catch(function (error) {
         console.log('Error while getting groups: ', error);
       })
   }
 
-  //Gets all volunteers for today, and all associated requests.
-    //updates currentData in state, which is then passed to VolunteerRequest Container.
+  // //Gets all volunteers for today, and all associated requests.
+  //   //updates currentData in state, which is then passed to VolunteerRequest Container.
   getCurrentData() {
     axios.get('/api/volunteer')
       .then(function(response) {
-        console.log('Getting Current Data?', response.body.data);
+        console.log('Getting Current Data?', response;
         this.setState({currentData: response.body.data});
       })
       .catch(function(error) {
@@ -118,25 +121,25 @@ class Runner extends Component {
     username: username,
     location: location,
     time:  time
-  })
-  .then(function (response) {
-    console.log('Volunteer posted! ',response);
-  })
-  .catch(function (error) {
-    console.log('Error while posting Volunteer: ',error);
-  });
+    })
+    .then(function (response) {
+      console.log('Volunteer posted! ',response);
+    })
+    .catch(function (error) {
+      console.log('Error while posting Volunteer: ',error);
+    });
   }
-  //postRequest sends a food request to the server.
-    //Accepts username of user requesting food
-      //volunter == username of the volunteer,
-      //food is from input box
-      //All strings
+  // postRequest sends a food request to the server.
+  //   Accepts username of user requesting food
+  //     volunter == username of the volunteer,
+  //     food is from input box
+  //     All strings
   postRequest(username, volunteer, food) {
-    axios.post('/api/request') {
+    axios.post('/api/request', {
       username: username,
       volunteer: volunteer,
       food: food
-    }
+    })
       .then(function(response) {
         console.log('Request submitted: ', response.body);
       })
@@ -156,11 +159,14 @@ class Runner extends Component {
     if (this.state.loggedIn===false){
       return (
         <div>
-          <NavBar 
-          //The navbar doesn't need to be sent any info at this level (I don't think?) besides whether it's logged in or not
-          login={this.login.bind(this)}
+          <NavBar
+          //pass in the postLogin and postLogout functions
+            //also pass current login state.
+          postLogout={this.postLogout.bind(this)}
+          postLogin={this.postLogin.bind(this)} 
           loggedIn={false} />
-          <LandingPage login={this.login.bind(this)}/>
+          
+          <LandingPage login={this.postLogin.bind(this)}/>
         </div>
         )
     } else {
@@ -191,9 +197,10 @@ class Runner extends Component {
           <div>
             <NavBar 
             //Again, funneling info to the navbar.
+              //Also passing in login and logout functions.
               loggedIn={true}
-              logOut={this.logOut.bind(this)} 
-              postLogout={this.postLogout.bind(this)} //Passing the postLogout function to Navbar.
+              postLogout={this.postLogout.bind(this)}
+              postLogin={this.postLogin.bind(this)}
               username={this.state.username} 
               picture={this.state.picture} />
             <VolunteerRequestsContainer 

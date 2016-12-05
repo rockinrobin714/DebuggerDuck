@@ -25,7 +25,8 @@ class NavBar extends Component {
   //login and logOut invoke the functions passed from App.
   login(){
     this.props.postLogin();
-  	this.setState({loggedIn: true})
+  	this.setState({loggedIn: true});
+    console.log('Logout triggered from Navbar');
     this.props.postLogin();
 	 }
   //logout updates local state and runs postLogout, inherited from App. 
@@ -34,7 +35,6 @@ class NavBar extends Component {
     console.log('log out triggered')
     this.props.postLogout();
   }
-  
   render() { 
     //This renders differently depending on whether logged in is true or false.
     //If I manually change true or false, it renders fine. Currently, it isn't rerendering when app.js rerenders, and it should.
