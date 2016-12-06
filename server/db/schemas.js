@@ -8,6 +8,7 @@ let db = {};
 const UserSchema = new Schema ({
 	//mongoose will automatically create a unique id, so no need to manually create one
 	username: String,
+	fb_id: String,
 	picture: String,
 	groups: [{group_id: String, karma: {type: Number, default:0}}]
 });
@@ -40,7 +41,7 @@ const OrderSchema = new Schema ({
 	location: String,
 	time: String,
 	group_id: String,
-	requests: [{user_id: String, text: String, default: []}],
+	requests: [{user_id: String, text: String}],
 	createdAt: { type : Date, default: Date.now }
 })
 
