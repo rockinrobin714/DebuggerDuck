@@ -106,7 +106,7 @@ class Runner extends Component {
     //Currently designed to get redirected to passport.  May need to be updated.
     //In progress.
   postLogin() {
-    axios.get('/api/login') 
+    axios.get('/api/login')
       .then(response => {
         console.log('Login successful? ', response);
         this.setState({loggedIn: true});
