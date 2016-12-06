@@ -33,7 +33,7 @@ class Runner extends Component {
 //I forgot to add the currentGroup functionality we can maybe render it in the request/volunteer container later, 
 //But right now, it does nothing
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       groupChosen: false,
@@ -151,12 +151,16 @@ class Runner extends Component {
   //     volunter == username of the volunteer,
   //     food is from input box
   //     All strings
-  postRequest(text) {
-    axios.post('/api/request', {data:{
-      //get userID somehow!!
-      userid: '12345',
-      text: text
-    }
+
+  postRequest(username, volunteerId, text) {
+      console.log('Running postRequest', username, volunteerId, text);
+      axios.post('/api/request', {data:{
+      //don't remove.  
+      username: username,
+      volunteerId: volunteerId, 
+      text: text,
+
+      }
     })
       .then(response => {
         console.log('Request submitted: ', response.data);

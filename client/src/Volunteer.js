@@ -17,7 +17,7 @@ class Volunteer extends Component {
       text:'',
       //requests is an array of stuff obtained from the database. 
       //It can be added to by the user by typing into the inputs and submitting.
-      requests:[{username:'Cat', picture:'http://www.warrenphotographic.co.uk/photography/bigs/08482-Fluffy-ginger-female-kitten.jpg', text:'Pick me up a burrito'}]
+      requests:this.props.volunteer.requests,
     };
   }
   onTextChange(event) {
@@ -27,8 +27,9 @@ class Volunteer extends Component {
      //set the text back to '' and add the info to the requests array
     //Note: for some reason, .push wouldn't work and I had to use .concat
       //run postRequest to generate a new request.
-  onSubmit(){
-    this.props.postRequest(this.state.username, this.props.volunteer, this.state.text);
+  onSubmit(text){
+    console.log('Text?', text);
+    this.props.postRequest(this.state.username, this.props.volunteer._id, text);
     this.setState({text:'', requests: this.state.requests.concat({username: this.state.username, picture: this.state.picture, text: this.state.text})});
   }
 
@@ -36,7 +37,7 @@ class Volunteer extends Component {
   	return ( 
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.volunteer.picture}/>
-          {this.props.volunteer.name} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
+          {this.props.volunteer.order_user} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
         
         {this.state.requests.map(request =>
           //this goes through the array of requests and maps them using the child component, Request.js

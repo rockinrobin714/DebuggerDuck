@@ -1,4 +1,4 @@
-# [Name - TBD]
+# Food Runner
 
 > Help your team.  Help yourself.  Eat real food.
 
@@ -29,18 +29,23 @@
 - ReactJS
 
 ## Development
+Other Technologies Used:
+Passport
+Facebook Authentication
+React-Modal-Bootstrap
 
 ### Installing Dependencies
 
 From within the root directory:
 
 ```sh
-npm install
+npm install (also runs gulp build).
 ```
 
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+//Known issues, production release schedule, known blockers for progress.
 
 
 ## Contributing
