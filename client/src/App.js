@@ -186,7 +186,6 @@ class Runner extends Component {
             //also pass current login state.
           postLogin={this.postLogin.bind(this)} 
           loggedIn={false} />
-          
           <LandingPage login={this.postLogin.bind(this)}/>
         </div>
         )
