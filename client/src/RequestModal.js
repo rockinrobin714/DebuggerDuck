@@ -13,12 +13,21 @@ class RequestModal extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-    isOpen: false,
+      isOpen: false,
+      text:''
     };
+  }
+  onTextChange(event) {
+    //every time the user types a new letter, the state is changed to the current input
+    this.setState({text: event.target.value});
   }
   
   onSubmit (){
-
+    this.props.onSubmit(this.state.text);
+    this.setState({
+      isOpen: false,
+      text: ''
+    });
   }
 
   openModal (){
@@ -46,7 +55,7 @@ class RequestModal extends React.Component {
     };
     let {isOpen, isSubOpen} = this.state;
     return (
-        <div>
+        <div className='center orange'>
           <button className="red-button" onClick={this.openModal.bind(this)}>
             Make a request
           </button>
@@ -59,11 +68,14 @@ class RequestModal extends React.Component {
             <div className='modal-inside'>
               <div>
                 &nbsp; What would you like? &nbsp;
-                <input className='modal-input third-input' type="text" id="location"/>
+                <input onChange={this.onTextChange.bind(this)} 
+                className='modal-input third-input' 
+                type="text" 
+                id="text"/>
               </div>
             </div>
             <ModalFooter>
-              <button className="red-button" onClick={this.hideModal.bind(this)}>
+              <button className="red-button" onClick={this.onSubmit.bind(this)}>
                 Submit
               </button>
             </ModalFooter>

@@ -2,7 +2,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import Request from './Request';
+import Request from './Request.js';
+import RequestModal from './RequestModal.js';
 
 class Volunteer extends Component {
   constructor(props) {
@@ -27,13 +28,12 @@ class Volunteer extends Component {
     //Note: for some reason, .push wouldn't work and I had to use .concat
       //run postRequest to generate a new request.
   onSubmit(){
-    this.props.postRequest(this.state.username, this.props.volunteer, this.state.text);s
+    this.props.postRequest(this.state.username, this.props.volunteer, this.state.text);
     this.setState({text:'', requests: this.state.requests.concat({username: this.state.username, picture: this.state.picture, text: this.state.text})});
   }
 
   render() {
   	return ( 
-      <div>
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.volunteer.picture}/>
           {this.props.volunteer.name} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
@@ -45,13 +45,8 @@ class Volunteer extends Component {
             key= {Math.random()}
             request={request}/>
           )}
-          <div className='request-div'>
-            What would you like {this.props.volunteer.name} to pick up for you? 
-            <input value={this.state.text} onChange={this.onTextChange.bind(this)} /> 
-            <button onClick={this.onSubmit.bind(this)} className="red-button">Send your requests</button>
+           <RequestModal onSubmit={this.onSubmit.bind(this)}/>
         </div>
-        </div>
-     </div>
   );
  }
  

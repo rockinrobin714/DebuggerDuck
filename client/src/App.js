@@ -6,10 +6,10 @@
 //                             App
 //          /             /     |       \
 //  NavBar    LandingPage     Groups    VolunteerRequestContainer
-//       \     /                             |
-//       FacebookButton                    Volunteer
-//                                           |
-//                                         Request
+//       \     /                |            |              |
+//       FacebookButton    Group Modal    volunteer     volunteer modal
+//                                          /   \
+//                                   request    request modal
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -20,6 +20,7 @@ import NavBar from './NavBar';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
+import GroupModal from './GroupModal';
 
 
 class Runner extends Component {
@@ -43,7 +44,7 @@ class Runner extends Component {
 
     };
     //Binding context for functions that get passed down.
-    this.getGroups = this.getGroups.bind(this);
+    //this.getGroups = this.getGroups.bind(this);
     this.getCurrentData = this.getCurrentData.bind(this);
     this.postLogin = this.postLogin.bind(this);
     this.postLogout = this.postLogout.bind(this);
@@ -57,15 +58,23 @@ class Runner extends Component {
   }
   
   selectGroup(){
-    this.setState({groupChosen: true})
+    this.setState({groupChosen: true});
     //flesh this out
   }
   selectDifferentGroup(){
-    this.setState({groupChosen:false})
+    this.setState({groupChosen:false});
     //this rerenders the app to go back to option 2 (mentioned above)
   }  
 
-
+  postGroup(groupName){
+    //this.setState({groupChosen:true});
+    axios.post('/api/group', {data:{"groupName":groupName}})
+      .then( response =>{
+      })
+       .catch(error => {
+        console.log('Error while getting groups: ', error);
+    });
+  }
 
   //Gets full list of available groups and updates state.
   getGroups(){
@@ -122,11 +131,13 @@ class Runner extends Component {
 
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
-  postVolunteer(username, location, time) {
-    axios.post('/api/volunteer', {
-    username: username,
-    location: location,
-    time:  time
+  postVolunteer(location, time) {
+    console.log(location, time, "posting them volunteeeeers")
+    axios.post('/api/volunteer', {data:{
+      username: this.props.username,
+      location: location,
+      time:  time
+      }
     })
     .then(response => {
       console.log('Volunteer posted! ',response);
@@ -140,16 +151,17 @@ class Runner extends Component {
   //     volunter == username of the volunteer,
   //     food is from input box
   //     All strings
-  postRequest(username, volunteer, food) {
-    axios.post('/api/request', {
-      username: username,
-      volunteer: volunteer,
-      food: food
+  postRequest(text) {
+    axios.post('/api/request', {data:{
+      //get userID somehow!!
+      userid: '12345',
+      text: text
+    }
     })
       .then(response => {
         console.log('Request submitted: ', response.data);
       })
-      .catch(ferror => {
+      .catch(error => {
         console.log('Error while submitting food request:', error);
       })
   }
@@ -195,6 +207,9 @@ class Runner extends Component {
               selectGroup={this.selectGroup.bind(this)} 
               group={group.name} />
             )}
+            <div className='center'>  
+              <GroupModal postGroup={this.postGroup.bind(this)}/>
+            </div>
           </div>
           )
       } else {
@@ -215,7 +230,6 @@ class Runner extends Component {
               currentData={this.state.currentData}
               postVolunteer={this.postVolunteer.bind(this)}
               postRequest={this.postRequest.bind(this)}
-
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>

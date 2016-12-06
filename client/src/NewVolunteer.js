@@ -14,7 +14,6 @@ import RequestButton from './RequestButton';
 class Volunteer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 

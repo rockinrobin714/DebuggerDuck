@@ -13,13 +13,20 @@ class RequestModal extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-    username: 'Rubber Duck',
-    isOpen: false,
+      isOpen: false,
+      text:'',
     };
+  }
+  onTextChange(event) {
+    //every time the user types a new letter, the state is changed to the current input
+    this.setState({text: event.target.value});
   }
   
   onSubmit (){
-
+    this.setState({
+      isOpen: false
+    });
+    this.props.postGroup(this.state.text);
   }
 
   openModal (){
@@ -48,8 +55,9 @@ class RequestModal extends React.Component {
     let {isOpen, isSubOpen} = this.state;
     return (
         <div>
+          Don't see any groups you like? Why not ...
           <button className="red-button" onClick={this.openModal.bind(this)}>
-            Make a request
+            Create a new group
           </button>
 
           <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
@@ -59,12 +67,16 @@ class RequestModal extends React.Component {
             </ModalHeader>
             <div className='modal-inside'>
               <div>
-                &nbsp; What would you like? &nbsp;
-                <input className='modal-input third-input' type="text" id="location"/>
+                &nbsp; Name your group. &nbsp;
+                <input 
+                onChange={this.onTextChange.bind(this)} 
+                className='modal-input third-input' 
+                type="text" 
+                id="group-name"/>
               </div>
             </div>
             <ModalFooter>
-              <button className="red-button" onClick={this.hideModal.bind(this)}>
+              <button className="red-button" onClick={this.onSubmit.bind(this)}>
                 Submit
               </button>
             </ModalFooter>
