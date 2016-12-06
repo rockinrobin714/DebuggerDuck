@@ -20,8 +20,8 @@ class RequestModal extends React.Component {
   onTextChange(event) {
     //every time the user types a new letter, the state is changed to the current input
     this.setState({text: event.target.value});
-    console.log(this.state.text)
   }
+  
   onSubmit (){
     this.setState({
       isOpen: false

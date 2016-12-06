@@ -156,11 +156,7 @@
 	padding:3px;
 	margin-bottom:3vh;
 }
-.request-div {
-	background-color:#FFC78F;
-	text-align:left;
-	padding-left:15px;
-}
+
 .individual-request {
 	background-color:#FFC78F;
 	padding-left:60px;
@@ -184,4 +180,7 @@
 }
 .no-wrap {
 	white-space:nowrap;
+}
+.orange {
+	background-color:#FFC78F;
 }

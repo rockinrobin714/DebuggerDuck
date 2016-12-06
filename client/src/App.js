@@ -131,11 +131,13 @@ class Runner extends Component {
 
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
-  postVolunteer(username, location, time) {
-    axios.post('/api/volunteer', {
-    username: username,
-    location: location,
-    time:  time
+  postVolunteer(location, time) {
+    console.log(location, time, "posting them volunteeeeers")
+    axios.post('/api/volunteer', {data:{
+      username: this.props.username,
+      location: location,
+      time:  time
+      }
     })
     .then(response => {
       console.log('Volunteer posted! ',response);
@@ -149,11 +151,11 @@ class Runner extends Component {
   //     volunter == username of the volunteer,
   //     food is from input box
   //     All strings
-  postRequest(username, volunteer, food) {
+  postRequest(text) {
     axios.post('/api/request', {data:{
-      username: username,
-      volunteer: volunteer,
-      food: food
+      //get userID somehow!!
+      userid: '12345',
+      text: text
     }
     })
       .then(response => {
@@ -228,7 +230,6 @@ class Runner extends Component {
               currentData={this.state.currentData}
               postVolunteer={this.postVolunteer.bind(this)}
               postRequest={this.postRequest.bind(this)}
-
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
