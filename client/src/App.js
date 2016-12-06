@@ -108,6 +108,14 @@ class Runner extends Component {
         console.log('Error while getting current data: ', error);
       })
   }
+  getUserData(){
+    axios.get('/api/user')
+      .then(response => {
+        console.log('User info sucessfully retrieved', response);
+        this.setState({username: response.data.username});
+        this.setState({picture: response.data.picture})
+      })
+  }
 
   //postLogin sends login data to the server.
     //Currently designed to get redirected to passport.  May need to be updated.
@@ -139,7 +147,6 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
   postVolunteer(location, time, group) {
-    console.log(location, time, group, "a number", this.getIdFromGroupName(group), "posting them volunteeeeers")
     axios.post('/api/volunteer', {data:{
       username: this.props.username,
       location: location,
