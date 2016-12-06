@@ -28,7 +28,7 @@ class VolunteerModal extends React.Component {
   }
   
   onSubmit (){
-    this.props.onSubmit(this.state.location, this.state.time);
+    this.props.onSubmit(this.state.location, this.state.time, this.props.currentGroup);
     this.setState({
       isOpen: false,
       time: '',
@@ -63,7 +63,7 @@ class VolunteerModal extends React.Component {
     return (
         <div className='center'>
           <button className="red-button" onClick={this.openModal.bind(this)}>
-            Volunteer your services
+            Volunteer your services to the {this.props.currentGroup} group
           </button>
 
           <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
