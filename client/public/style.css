@@ -137,9 +137,8 @@
 }
 
 .group-button {
-	border-radius:10px;
 	background-color:#ff3b3f;
-	border:none;
+	border:1px #808080 solid;
 	padding-left:10px;
 	padding-right:10px;
 }

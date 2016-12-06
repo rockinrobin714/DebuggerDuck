@@ -32,7 +32,6 @@ class NavBar extends Component {
   //logout updates local state and runs postLogout, inherited from App. 
   logOut(){
     this.setState({loggedIn: false})
-    console.log('log out triggered')
     this.props.postLogout();
   }
   render() { 

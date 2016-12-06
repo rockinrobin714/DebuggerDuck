@@ -149,7 +149,7 @@ class Runner extends Component {
       .then(response => {
         console.log('Request submitted: ', response.data);
       })
-      .catch(ferror => {
+      .catch(error => {
         console.log('Error while submitting food request:', error);
       })
   }
@@ -195,6 +195,9 @@ class Runner extends Component {
               selectGroup={this.selectGroup.bind(this)} 
               group={group.name} />
             )}
+            <div className='center'>  
+              <button className='red-button newGroup'>Create new group</button>
+            </div>
           </div>
           )
       } else {
