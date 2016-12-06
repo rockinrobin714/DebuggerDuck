@@ -122,6 +122,8 @@ module.exports = {
   logout: {
     get: (req, res) => {
       res.sendStatus(200); 
-    }
-  }
-}
+
+     }
+   },  
+  
+}  
