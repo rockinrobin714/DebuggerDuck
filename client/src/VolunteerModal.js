@@ -61,7 +61,7 @@ class VolunteerModal extends React.Component {
     };
     let {isOpen, isSubOpen} = this.state;
     return (
-        <div>
+        <div className='center'>
           <button className="red-button" onClick={this.openModal.bind(this)}>
             Volunteer your services
           </button>

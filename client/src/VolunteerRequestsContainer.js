@@ -21,7 +21,9 @@ class VolunteerRequestContainer extends Component {
   render() {
     return ( 
      <div className='request-container'>
-        <VolunteerModal onSubmit={this.props.postVolunteer} />
+        <div>
+          <VolunteerModal onSubmit={this.props.postVolunteer} />
+        </div>
         {this.state.volunteers.map(volunteer =>
                 <Volunteer 
                 //I put math.random because react got angry at me

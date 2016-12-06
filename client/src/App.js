@@ -6,10 +6,10 @@
 //                             App
 //          /             /     |       \
 //  NavBar    LandingPage     Groups    VolunteerRequestContainer
-//       \     /                             |
-//       FacebookButton                    Volunteer
-//                                           |
-//                                         Request
+//       \     /                |            |              |
+//       FacebookButton    Group Modal    volunteer     volunteer modal
+//                                          /   \
+//                                   request    request modal
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
