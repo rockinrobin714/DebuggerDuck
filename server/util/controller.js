@@ -81,6 +81,7 @@ module.exports = {
     },
     // Volunteer controller functions for POST
     post: (req, res) => {
+
       new db.Order({
         order_user: req.body.data.username,
         location: req.body.data.location,
@@ -99,6 +100,7 @@ module.exports = {
 
   request: {
     // Request controller functions for POST
+    //Data is posted in req.body
     post: (req, res) => {
       console.log('Request POST');
       res.sendStatus(200);
