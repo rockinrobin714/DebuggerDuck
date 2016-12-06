@@ -20,6 +20,7 @@ import NavBar from './NavBar';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
+import GroupModal from './GroupModal';
 
 
 class Runner extends Component {
@@ -43,7 +44,7 @@ class Runner extends Component {
 
     };
     //Binding context for functions that get passed down.
-    this.getGroups = this.getGroups.bind(this);
+    //this.getGroups = this.getGroups.bind(this);
     this.getCurrentData = this.getCurrentData.bind(this);
     this.postLogin = this.postLogin.bind(this);
     this.postLogout = this.postLogout.bind(this);
@@ -57,15 +58,23 @@ class Runner extends Component {
   }
   
   selectGroup(){
-    this.setState({groupChosen: true})
+    this.setState({groupChosen: true});
     //flesh this out
   }
   selectDifferentGroup(){
-    this.setState({groupChosen:false})
+    this.setState({groupChosen:false});
     //this rerenders the app to go back to option 2 (mentioned above)
   }  
 
-
+  postGroup(groupName){
+    //this.setState({groupChosen:true});
+    axios.post('/api/group', {data:{"groupName":groupName}})
+      .then( response =>{
+      })
+       .catch(error => {
+        console.log('Error while getting groups: ', error);
+    });
+  }
 
   //Gets full list of available groups and updates state.
   getGroups(){
@@ -141,10 +150,11 @@ class Runner extends Component {
   //     food is from input box
   //     All strings
   postRequest(username, volunteer, food) {
-    axios.post('/api/request', {
+    axios.post('/api/request', {data:{
       username: username,
       volunteer: volunteer,
       food: food
+    }
     })
       .then(response => {
         console.log('Request submitted: ', response.data);
@@ -196,7 +206,7 @@ class Runner extends Component {
               group={group.name} />
             )}
             <div className='center'>  
-              <button className='red-button newGroup'>Create new group</button>
+              <GroupModal postGroup={this.postGroup.bind(this)}/>
             </div>
           </div>
           )

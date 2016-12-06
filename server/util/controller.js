@@ -37,7 +37,7 @@ module.exports = {
     // Group controller functions for GET
     post: (req, res) => {
       // Look in the database to see if there is a Group with the given name already
-      db.Group.findOne({'name': req.body.data.groupName}).exec()
+      db.Group.findOne({name: req.body.data.groupName}).exec()
       .then((data) => {
         console.log(data)
         // If we don't get any data, add the request body into the database
