@@ -25,7 +25,7 @@ class VolunteerRequestContainer extends Component {
     return ( 
      <div className='request-container'>
         <div>
-          <VolunteerModal onSubmit={this.props.postVolunteer} />
+          <VolunteerModal currentGroup={this.props.currentGroup} onSubmit={this.props.postVolunteer} />
         </div>
         {this.state.volunteers.map(volunteer =>
                 <Volunteer 

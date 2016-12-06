@@ -36,9 +36,8 @@ class Runner extends Component {
       loggedIn: true,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
-      groupChosen: false,
-      currentGroup: 'Capital Factory',
-      groups:['Capital Factory','Ducks'],
+      currentGroup: '',
+      groups:[],
       //currentData holds all volunteers and requests from day.
       currentData:[],
 
@@ -52,17 +51,26 @@ class Runner extends Component {
 
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
-    console.log('Component mounted.');
    this.getGroups();
    this.getCurrentData();
   }
-  
-  selectGroup(){
-    this.setState({groupChosen: true});
-    //flesh this out
+
+  getIdFromGroupName(name) {
+    console.log('The number of groups:',this.state.groups.length)
+    for (var i=0;i<this.state.groups.length;i++){
+      if (this.state.groups[i].name===name){
+        console.log(this.state.groups[i]._id)
+        return this.state.groups[i]._id;
+      } else {
+        console.log('Group Id not found')
+      }
+    }
+  }
+  selectGroup(name){
+    this.setState({currentGroup: name});
   }
   selectDifferentGroup(){
-    this.setState({groupChosen:false});
+    this.setState({currentGroup:''});
     //this rerenders the app to go back to option 2 (mentioned above)
   }  
 
@@ -80,9 +88,8 @@ class Runner extends Component {
   getGroups(){
     axios.get('/api/group')
       .then( response => {
-        console.log('Getting Groups? ', response.data.data);
         this.setState( {groups:response.data.data} );
-        //console.log('Group State?',this.state.groups);
+        console.log('Group State?',this.state.groups);
     })
       .catch(error => {
         console.log('Error while getting groups: ', error);
@@ -186,11 +193,12 @@ class Runner extends Component {
             //also pass current login state.
           postLogin={this.postLogin.bind(this)} 
           loggedIn={false} />
+          
           <LandingPage login={this.postLogin.bind(this)}/>
         </div>
         )
     } else {
-      if (this.state.groupChosen===false){
+      if (this.state.currentGroup===''){
         return (
           <div>
           <NavBar 
@@ -206,8 +214,8 @@ class Runner extends Component {
               //This maps out all the groups into a list. 
               <Groups 
               //If I don't put a key in, react gets angry with me.
-              key={group.name}
-              selectGroup={this.selectGroup.bind(this)} 
+              selectGroup={this.selectGroup.bind(this)}
+              key={Math.random()}
               group={group.name} />
             )}
             <div className='center'>  
@@ -230,6 +238,7 @@ class Runner extends Component {
             //This also needs to be funneled info
               username={this.state.username} 
               picture={this.state.picture}
+              currentGroup={this.state.currentGroup}
               currentData={this.state.currentData}
               postVolunteer={this.postVolunteer.bind(this)}
               postRequest={this.postRequest.bind(this)}
