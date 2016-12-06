@@ -16,11 +16,13 @@ module.exports.app = app;
 // Check to see if there is a port environment variable or just use port 4040 instead
 module.exports.NODEPORT = process.env.PORT || 4040;
 
+
+//OAuth strategies require a 'verify' function that receives accessToken
+//for accessing FB API. Function must invoke 'cb' with a user object
+//which will be set at req.user in route handlers after authentication
+//Make a strategy for FB authentication
+
 if (process.env.server) {
-  //OAuth strategies require a 'verify' function that receives accessToken
-  //for accessing FB API. Function must invoke 'cb' with a user object
-  //which will be set at req.user in route handlers after authentication
-  //Make a strategy for FB authentication
   passport.use(new Strategy({
     clientID: '361835207541944',
     clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
@@ -49,10 +51,6 @@ if (process.env.server) {
      return done(null, profile);
   }));
 } else {
-  //OAuth strategies require a 'verify' function that receives accessToken
-  //for accessing FB API. Function must invoke 'cb' with a user object
-  //which will be set at req.user in route handlers after authentication
-  //Make a strategy for FB authentication
   passport.use(new Strategy({
     clientID: '361835207541944',
     clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',

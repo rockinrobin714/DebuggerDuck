@@ -33,7 +33,7 @@ class Runner extends Component {
 //I forgot to add the currentGroup functionality we can maybe render it in the request/volunteer container later, 
 //But right now, it does nothing
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       groupChosen: false,
