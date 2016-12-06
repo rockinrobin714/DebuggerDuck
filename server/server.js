@@ -8,6 +8,8 @@ const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
+var LocalStorage = require('node-localstorage').LocalStorage;
+localStorage = new LocalStorage('./scratch');
 
 // Use express and export it
 const app = express();
@@ -41,7 +43,6 @@ if (process.env.server) {
             groups: [{group_id: 2345}]
           }).save()
           .then((data) => {
-            console.log('Added User to DB');
           })
           .catch((err) => {
             console.error(err);
@@ -60,16 +61,16 @@ if (process.env.server) {
   function(accessToken, refreshToken, profile, done) {
     db.User.findOne({fb_id: profile.id}).exec()
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         if(!data) {
           new db.User({
             username: profile.displayName,
             fb_id: profile.id,
-            picture: 'https://graph.facebook.com/' + profile.id + '/picture?type=small',
+            picture: 'https://graph.facebook.com/' + profile.id + '/picture?type=normal',
             groups: [{group_id: 2345}]
           }).save()
           .then((data) => {
-            console.log('Added User to DB');
+
           })
           .catch((err) => {
             console.error(err);
@@ -81,12 +82,12 @@ if (process.env.server) {
 }
 
 //Serialize and deserialize users out of the session.
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
+passport.serializeUser(function(user, done) {
+  return done(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 });
 
 // Use body-parser for parsing JSON and URLencoded body data
@@ -102,10 +103,25 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  console.log(req.user)
-  next();
-})
+// // set a cookie
+// app.use(function (req, res, next) {
+//   // check if client sent cookie
+//   var cookie = req.cookies.cookieName;
+//   if (cookie === undefined)
+//   {
+//     // no: set a new cookie
+//     var randomNumber=Math.random().toString();
+//     randomNumber=randomNumber.substring(2,randomNumber.length);
+//     res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+//     console.log('cookie created successfully');
+//   } 
+//   else
+//   {
+//     // yes, cookie was already present 
+//     console.log('cookie exists', cookie);
+//   } 
+//   next();
+// });
 
 // Serve the static client HTML files
 app.use(express.static(path.join(__dirname, '/../client/public')));
@@ -116,7 +132,14 @@ app.use('/lib', express.static(path.join(__dirname, '/../node_modules')));
 
 //Wasted a lot of time trying to get passport.authenticate to work inside the router so I placed it here instead
 app.get('/login', passport.authenticate('facebook'));
-app.get('/facebook/oauth', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+app.get('/facebook/oauth', passport.authenticate('facebook', {failureRedirect: '/login'}),
+  (req, res) => {
+    let cookie = {
+      session: req.sessionID,
+      userID: req.user.id
+    }
+    res.cookie('fr-session', cookie, { maxAge: 900000, httpOnly: true }).redirect('/');
+});
 
 // Listen for requests on /api and then use the router to determine
 // what happens with the requests

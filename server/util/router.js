@@ -13,6 +13,7 @@ const controller = require('./controller');
 //User ther outer to direct GET requests for /login
 //router.get('/profile', controller.login.profile);
 
+router.get('/user', controller.user.get);
 
 // Use the router to direct GET and POST requests for /group
 router.get('/group', controller.group.get);
