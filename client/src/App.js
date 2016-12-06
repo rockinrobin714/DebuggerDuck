@@ -116,6 +116,9 @@ class Runner extends Component {
         this.setState({username: response.data.username});
         this.setState({picture: response.data.picture})
       })
+      .catch(error =>{
+        console.log('Error while getting user info', error)
+      })
   }
 
   //postLogin sends login data to the server.

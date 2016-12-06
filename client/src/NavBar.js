@@ -39,9 +39,6 @@ class NavBar extends Component {
   	if(this.state.loggedIn===false) {
   		return (
   			<div className='nav-bar'>
-    			<FacebookButton 
-          login={this.login.bind(this)} 
-          loggedIn={this.state.loggedIn} />
     		</div>
     	)
   	} else {
