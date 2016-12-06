@@ -15,13 +15,14 @@ class FacebookButton extends Component {
         //There are two different facebook buttons. Maybe we could make these two separate components? There's not a lot to them,
         //so I kept them together for and simply sent down some props saying 'bottom' for the second button.
       	return (
-      		<div className='center'><a login={this.props.login} className='fb-button-big' href='/login'><i className="fa fa-facebook" aria-hidden="true"></i> Sign up now with Facebook</a></div>
+          //<div className='center'><a login={this.props.login} className='fb-button-big' href='/login'><i className="fa fa-facebook" aria-hidden="true"></i> Sign up now with Facebook</a></div>
+      		<div className='center'><a className='fb-button-big' href='/login'><i className="fa fa-facebook" aria-hidden="true"></i> Sign up now with Facebook</a></div>
       		)
       } else{
         if (this.props.loggedIn===false){
           return (
            <a 
-             onClick={this.props.login}
+             //onClick={this.props.login}
              className='fb-button'
              href='/login'>
              <i className="fa fa-facebook" aria-hidden="true"></i>&nbsp;Log in
@@ -30,7 +31,7 @@ class FacebookButton extends Component {
         }else {
           return (
            <a 
-             onClick={this.props.logOut}
+             //onClick={this.props.logOut}
              className='fb-button'
              href='/login'>
              <i className="fa fa-facebook" aria-hidden="true"></i>&nbsp;Log out
