@@ -19,7 +19,9 @@ class VolunteerRequestContainer extends Component {
 
   }
 
-  componentDidMount() { console.log('volunteers? ', this.state.volunteers);} 
+  componentDidMount() { 
+    console.log('volunteers? ', this.state.volunteers);
+  } 
   
   render() {
     return ( 
@@ -27,7 +29,8 @@ class VolunteerRequestContainer extends Component {
         <div>
           <VolunteerModal currentGroup={this.props.currentGroup} onSubmit={this.props.postVolunteer} />
         </div>
-        {this.state.volunteers.map(volunteer =>
+        {this.state.volunteers.filter(volunteer => volunteer.group_id === this.props.getIdFromGroupName(this.props.currentGroup))
+          .map(volunteer =>
                 <Volunteer 
                 //I put math.random because react got angry at me
                 postRequest={this.props.postRequest}

@@ -236,6 +236,7 @@ class Runner extends Component {
               picture={this.state.picture} />
             <VolunteerRequestsContainer 
             //This also needs to be funneled info
+              getIdFromGroupName={this.getIdFromGroupName.bind(this)}
               username={this.state.username} 
               picture={this.state.picture}
               currentGroup={this.state.currentGroup}
