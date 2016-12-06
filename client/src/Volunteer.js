@@ -28,7 +28,7 @@ class Volunteer extends Component {
     //Note: for some reason, .push wouldn't work and I had to use .concat
       //run postRequest to generate a new request.
   onSubmit(text){
-    console.log('Text?', this.state.text);
+    console.log('Text?', text);
     this.props.postRequest(this.state.username, this.props.volunteer._id, text);
     this.setState({text:'', requests: this.state.requests.concat({username: this.state.username, picture: this.state.picture, text: this.state.text})});
   }
@@ -37,7 +37,7 @@ class Volunteer extends Component {
   	return ( 
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.volunteer.picture}/>
-          {this.props.volunteer.name} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
+          {this.props.volunteer.order_user} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
         
         {this.state.requests.map(request =>
           //this goes through the array of requests and maps them using the child component, Request.js

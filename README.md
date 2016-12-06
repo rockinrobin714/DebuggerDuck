@@ -29,14 +29,17 @@
 - ReactJS
 
 ## Development
-Add in deeper tech stack explanation here.
+Other Technologies Used:
+Passport
+Facebook Authentication
+React-Modal-Bootstrap
 
 ### Installing Dependencies
 
 From within the root directory:
 
 ```sh
-npm install
+npm install (also runs gulp build).
 ```
 
 ### Roadmap
