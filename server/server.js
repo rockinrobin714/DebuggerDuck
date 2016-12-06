@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const router = require('./util/router.js');
 const db = require('./db/schemas.js');
-const dbConnection = require('./db/connection.js')
+const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
@@ -21,7 +21,37 @@ module.exports.NODEPORT = process.env.PORT || 4040;
 //for accessing FB API. Function must invoke 'cb' with a user object
 //which will be set at req.user in route handlers after authentication
 //Make a strategy for FB authentication
-passport.use(new Strategy({
+
+if (process.env.server) {
+  passport.use(new Strategy({
+    clientID: '361835207541944',
+    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
+    callbackURL: 'https://food-runner.herokuapp.com/facebook/oauth'
+  },
+  //facebook sends back tokens and profile
+  function(accessToken, refreshToken, profile, done) {
+    db.User.findOne({fb_id: profile.id}).exec()
+      .then((data) => {
+        console.log(data);
+        if(!data) {
+          new db.User({
+            username: profile.displayName,
+            fb_id: profile.id,
+            picture: 'https://graph.facebook.com/' + profile.id + '/picture?type=small',
+            groups: [{group_id: 2345}]
+          }).save()
+          .then((data) => {
+            console.log('Added User to DB');
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+        }
+      })
+     return done(null, profile);
+  }));
+} else {
+  passport.use(new Strategy({
     clientID: '361835207541944',
     clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
     callbackURL: 'http://127.0.0.1:' + module.exports.NODEPORT + '/facebook/oauth'
@@ -30,17 +60,25 @@ passport.use(new Strategy({
   function(accessToken, refreshToken, profile, done) {
     db.User.findOne({fb_id: profile.id}).exec()
       .then((data) => {
+        console.log(data);
         if(!data) {
           new db.User({
             username: profile.displayName,
             fb_id: profile.id,
             picture: 'https://graph.facebook.com/' + profile.id + '/picture?type=small',
             groups: [{group_id: 2345}]
+          }).save()
+          .then((data) => {
+            console.log('Added User to DB');
+          })
+          .catch((err) => {
+            console.error(err);
           })
         }
       })
-  	 return done(null, profile);
+     return done(null, profile);
   }));
+}
 
 //Serialize and deserialize users out of the session.
 passport.serializeUser(function(user, cb) {
@@ -63,6 +101,11 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true 
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  console.log(req.user)
+  next();
+})
 
 // Serve the static client HTML files
 app.use(express.static(path.join(__dirname, '/../client/public')));
