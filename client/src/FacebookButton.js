@@ -15,7 +15,7 @@ class FacebookButton extends Component {
         //There are two different facebook buttons. Maybe we could make these two separate components? There's not a lot to them,
         //so I kept them together for and simply sent down some props saying 'bottom' for the second button.
       	return (
-      		<div className='center'><button onClick={this.props.login} className='fb-button-big '><i className="fa fa-facebook" aria-hidden="true"></i> Sign up now with Facebook</button></div>
+      		<div className='center'><button login={this.props.login} className='fb-button-big '><i className="fa fa-facebook" aria-hidden="true"></i> Sign up now with Facebook</button></div>
       		)
       } else{
         if (this.props.loggedIn===false){
