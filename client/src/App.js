@@ -138,12 +138,13 @@ class Runner extends Component {
 
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
-  postVolunteer(location, time) {
-    console.log(location, time, "posting them volunteeeeers")
+  postVolunteer(location, time, group) {
+    console.log(location, time, group, "a number", this.getIdFromGroupName(group), "posting them volunteeeeers")
     axios.post('/api/volunteer', {data:{
       username: this.props.username,
       location: location,
-      time:  time
+      time:  time,
+      groupId: this.getIdFromGroupName(group)
       }
     })
     .then(response => {
