@@ -12,8 +12,8 @@ module.exports = {
   login: {
     // Login controller functions for GET
     get: (req, res) => {
-      passport.authenticate('facebook')
-      console.log('Login GET');
+      passport.authenticate('facebook');
+      //console.log('Login GET');
       //res.send(200);
     },
 
@@ -21,13 +21,6 @@ module.exports = {
     oauth: (req,res) => {
       passport.authenticate('facebook', { failureRedirect: '/login' })
       res.redirect('/');
-    },
-
-  // Login controller functions for GET
-    profile: (req, res) => {
-      require('connect-ensure-login').ensureLoggedIn()
-      res.render('profile', { user: req.user })
-      console.log("This is user: ", req.user)
     }
   },
 
@@ -88,13 +81,6 @@ module.exports = {
     },
     // Volunteer controller functions for POST
     post: (req, res) => {
-      req.body.data = {
-        username: 'wschwanke',
-        location: 'Chipotle',
-        time: 'Eleventee PM',
-        groupId: 'f329j023dkwdk0w',
-        requests: []
-      }
       new db.Order({
         order_user: req.body.data.username,
         location: req.body.data.location,

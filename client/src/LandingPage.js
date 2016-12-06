@@ -10,14 +10,13 @@ class LandingPage extends Component {
     this.state = {};
   }
 
-   render(){
-      
+   render() {
       return (
       	<div>
       		<div className='spacer'></div>
         	<div className='welcome'>Welcome to Food Runner.</div>
         	<div className='tag-line'>Help your team. &nbsp; Help yourself. &nbsp; Eat real food.</div> 
-        	<FacebookButton login={this.props.login} position={'bottom'}/>
+        	<FacebookButton onClick={() => this.props.login} position={'bottom'}/>
         </div>	
       )
    }

@@ -1,9 +1,11 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const router = require('./util/router.js');
 const db = require('./db/schemas.js');
 const dbConnection = require('./db/connection.js')
+const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
 
@@ -11,19 +13,22 @@ const Strategy = require('passport-facebook').Strategy;
 const app = express();
 module.exports.app = app;
 
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
+
 //OAuth strategies require a 'verify' function that receives accessToken
 //for accessing FB API. Function must invoke 'cb' with a user object
 //which will be set at req.user in route handlers after authentication
-
 //Make a strategy for FB authentication
-
 passport.use(new Strategy({
-    clientID: '1773647686219809',
-    clientSecret: '98066769ab9c63ce02a5c8586f3e10fb',
-    callbackURL: 'http://localhost:4040/login/facebook/oauth'
+    clientID: '361835207541944',
+    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
+    callbackURL: 'http://127.0.0.1:4040/facebook/oauth'
   },
-//facebook sends back tokens and profile
-  function(accessToken, refreshToken, profile, cb) {
+  //facebook sends back tokens and profile
+  function(accessToken, refreshToken, profile, done) {
   	 return cb(null, profile);
   }));
 
@@ -36,21 +41,14 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
-// Use middleware for logging, parsing, and session handling.
-app.use(require('morgan')('combined'));
-app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
-
-// Initialize Passport and restore authentication state, if any, from the
-// session.
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-// Use body-parser for parsing JSON in the request body
+// Use body-parser for parsing JSON and URLencoded body data
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+// User cookie-parser to parse cookies we get from Facebook
+app.use(cookieParser());
 
 // Serve the static client HTML files
 app.use(express.static(path.join(__dirname, '/../client/public')));
@@ -58,6 +56,9 @@ app.use(express.static(path.join(__dirname, '/../client/public')));
 app.use('/dist', express.static(path.join(__dirname, '/../client/dist')));
 // Serve the node modules
 app.use('/lib', express.static(path.join(__dirname, '/../node_modules')));
+
+app.get('/login', passport.authenticate('facebook'));
+app.get('/facebook/oauth', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
 // Listen for requests on /api and then use the router to determine
 // what happens with the requests

@@ -23,21 +23,20 @@ class NavBar extends Component {
   //Once we get OAUTH up, this button functionality will need to change.
   
   //login and logOut invoke the functions passed from App.
-  login(){
-    
+  login() {
   	this.setState({loggedIn: true});
     console.log('Logout triggered from Navbar');
     this.props.postLogin();
 	 }
   //logout updates local state and runs postLogout, inherited from App. 
-  logOut(){
+  logOut() {
     this.setState({loggedIn: false})
     this.props.postLogout();
   }
   render() { 
     //This renders differently depending on whether logged in is true or false.
     //If I manually change true or false, it renders fine. Currently, it isn't rerendering when app.js rerenders, and it should.
-  	if(this.state.loggedIn===false){
+  	if(this.state.loggedIn===false) {
   		return (
   			<div className='nav-bar'>
     			<FacebookButton 
