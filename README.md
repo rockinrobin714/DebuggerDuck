@@ -1,4 +1,4 @@
-# [Name - TBD]
+# Food Runner
 
 > Help your team.  Help yourself.  Eat real food.
 
@@ -29,6 +29,7 @@
 - ReactJS
 
 ## Development
+Add in deeper tech stack explanation here.
 
 ### Installing Dependencies
 
@@ -41,6 +42,7 @@ npm install
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+//Known issues, production release schedule, known blockers for progress.
 
 
 ## Contributing

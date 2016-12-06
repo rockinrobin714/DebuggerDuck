@@ -101,6 +101,7 @@ module.exports = {
   request: {
     // Request controller functions for POST
     //Data is posted in req.body
+<<<<<<< 35b18d80a9b2fdfc856cfd395b490e849923388d
     //postRequest sends
     // {data:{ 
     //   username: username,
@@ -114,17 +115,30 @@ module.exports = {
         )
        .then((data) => {
         console.log('Data sent to DB.');
+=======
+    post: (req, res) => {
+             //console.log('Body?',req.body);
+        db.Order.findOneAndUpdate(
+         {_id:req.body.data.volunteerId},
+         {$push: { requests:{user_id: req.body.data.username, text:req.body.data.text} } }
+        )
+       .then((data) => {
+        //console.log('Data sent to DB.', data);
+>>>>>>> Making progress on route.
         res.status(201).send(data);
       })
       .catch((err) => {
         res.sendStatus(400)
       })
       //console.log('Request POST', req);
+<<<<<<< 35b18d80a9b2fdfc856cfd395b490e849923388d
   },
 
   logout: {
     get: (req, res) => {
       res.sendStatus(200); 
+=======
+>>>>>>> Making progress on route.
     }
   }
 }
