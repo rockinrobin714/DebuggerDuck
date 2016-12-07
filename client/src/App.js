@@ -54,7 +54,6 @@ class Runner extends Component {
     this.postLogin();
    this.getGroups();
    this.getCurrentData();
-   this.getUserData();
   }
 
   getIdFromGroupName(name) {
@@ -127,6 +126,7 @@ class Runner extends Component {
     //In progress.
   postLogin() {
     axios.get('/api/user/loggedin')
+    console.log("I am loggin in")
       .then(response => {
         console.log('Login successful? ', response);
         this.setState({loggedIn: true});
@@ -143,6 +143,7 @@ class Runner extends Component {
       .then(response => {
         console.log('Logged out:', response);
         this.setState({loggedIn: false});
+        this.getUserData();
       })
       .catch(error => {
         console.log('Error while logging out: ', error);
