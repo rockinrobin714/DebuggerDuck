@@ -54,6 +54,7 @@ class Runner extends Component {
     this.postLogin();
    this.getGroups();
    this.getCurrentData();
+   this.getUserData();
   }
 
   getIdFromGroupName(name) {
