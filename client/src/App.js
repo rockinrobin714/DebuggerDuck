@@ -37,6 +37,7 @@ class Runner extends Component {
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       currentGroup: '',
+      userId: '',
       groups:[],
       //currentData holds all volunteers and requests from day.
       currentData:[],
@@ -114,7 +115,8 @@ class Runner extends Component {
       .then(response => {
         console.log('User info sucessfully retrieved', response);
         this.setState({username: response.data.username});
-        this.setState({picture: response.data.picture})
+        this.setState({picture: response.data.picture});
+        this.setState({userId: response.data._id})
       })
       .catch(error =>{
         console.log('Error while getting user info', error)
@@ -126,10 +128,10 @@ class Runner extends Component {
     //In progress.
   postLogin() {
     axios.get('/api/user/loggedin')
-    console.log("I am loggin in")
       .then(response => {
         console.log('Login successful? ', response);
         this.setState({loggedIn: true});
+        this.getUserData()
       })
       .catch(error => {
         console.log('Error occurred during login ', error);
@@ -154,7 +156,7 @@ class Runner extends Component {
     //Accepts a location, a time, and a username, all strings for simplicity.
   postVolunteer(location, time, group) {
     axios.post('/api/volunteer', {data:{
-      username: this.props.username,
+      username: this.state.username,
       location: location,
       time:  time,
       groupId: this.getIdFromGroupName(group)
@@ -173,11 +175,11 @@ class Runner extends Component {
   //     food is from input box
   //     All strings
 
-  postRequest(username, volunteerId, text) {
-      console.log('Running postRequest', username, volunteerId, text);
+  postRequest(volunteerId, text) {
+      console.log('Running postRequest', volunteerId, text);
       axios.post('/api/request', {data:{
       //don't remove.  
-      username: username,
+      username: this.state.username,
       volunteerId: volunteerId, 
       text: text,
 
