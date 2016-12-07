@@ -182,7 +182,8 @@ class Runner extends Component {
       axios.post('/api/request', {data:{
       //don't remove.  
       username: this.state.username,
-      volunteerId: volunteerId, 
+      volunteerId: volunteerId,
+      picture: this.state.picture, 
       text: text,
 
       }
