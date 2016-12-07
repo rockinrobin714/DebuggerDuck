@@ -9,18 +9,23 @@ const buildResObj = function (data) {
 
 module.exports = {
 
-  login: {
-    // Login controller functions for GET
+  user: {
     get: (req, res) => {
-      passport.authenticate('facebook');
-      //console.log('Login GET');
-      //res.send(200);
+      db.User.findOne({fb_id: req.user.id}).exec()
+        .then((user) => {
+          res.status(200).send(user);
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(400);
+        })
     },
-
-    //Login controller function for oath
-    oauth: (req,res) => {
-      passport.authenticate('facebook', { failureRedirect: '/login' })
-      res.redirect('/');
+    loggedIn: (req, res) => {
+      if (req.user.id) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
     }
   },
 
