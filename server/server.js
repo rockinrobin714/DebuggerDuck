@@ -8,8 +8,6 @@ const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
-var LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
 
 // Use express and export it
 const app = express();

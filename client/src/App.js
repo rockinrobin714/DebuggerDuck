@@ -33,7 +33,7 @@ class Runner extends Component {
 //I forgot to add the currentGroup functionality we can maybe render it in the request/volunteer container later, 
 //But right now, it does nothing
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
       username: 'Debugger Duck',
       picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
       currentGroup: '',
@@ -51,6 +51,7 @@ class Runner extends Component {
 
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
+    this.postLogin();
    this.getGroups();
    this.getCurrentData();
   }
@@ -113,7 +114,7 @@ class Runner extends Component {
     //Currently designed to get redirected to passport.  May need to be updated.
     //In progress.
   postLogin() {
-    axios.get('/api/login')
+    axios.get('/api/user/loggedin')
       .then(response => {
         console.log('Login successful? ', response);
         this.setState({loggedIn: true});
