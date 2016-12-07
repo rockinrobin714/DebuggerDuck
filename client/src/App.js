@@ -109,7 +109,7 @@ class Runner extends Component {
         console.log('Error while getting current data: ', error);
       })
   }
- 
+
   getUserData(){
     axios.get('/api/user')
       .then(response => {
@@ -160,6 +160,7 @@ class Runner extends Component {
       username: this.state.username,
       location: location,
       time:  time,
+      picture: this.state.picture,
       groupId: this.getIdFromGroupName(group)
       }
     })

@@ -8,7 +8,7 @@ import RequestModal from './RequestModal.js';
 class Volunteer extends Component {
   constructor(props) {
     super(props);
-
+    console.log("Volunteer Props: ", props)
     this.state = {
       //This info has been funneled down from volunteerRequestContainer, which was funneled down from app.js
       username: this.props.username,

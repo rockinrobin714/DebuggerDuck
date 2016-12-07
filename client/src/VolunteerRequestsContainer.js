@@ -9,12 +9,12 @@ import VolunteerModal from './VolunteerModal'
 class VolunteerRequestContainer extends Component {
   constructor(props) {
     super(props);
-
+    console.log("Volunteer Props: ", props)
     this.state = {
       //this info was funneled down from app.js
-      username: this.props.username,
-      picture: this.props.picture,
-      volunteers:this.props.currentData,
+      username: props.username,
+      picture: props.picture,
+      volunteers: props.currentData,
     };
 
   }
