@@ -31,16 +31,16 @@ class VolunteerRequestContainer extends Component {
         </div>
         {this.state.volunteers.filter(volunteer => volunteer.group_id === this.props.getIdFromGroupName(this.props.currentGroup))
           .map(volunteer =>
-                <Volunteer 
-                //I put math.random because react got angry at me
-                postRequest={this.props.postRequest}
-                key={Math.random()}
-                username={this.state.username}
-                //commenting out picture for now
-                picture={this.state.picture}
-                //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
-                volunteer={volunteer}/>
-              )}
+            <Volunteer 
+            //I put math.random because react got angry at me
+            postRequest={this.props.postRequest}
+            key={Math.random()}
+            username={this.state.username}
+            //commenting out picture for now
+            picture={this.state.picture}
+            //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
+            volunteer={volunteer}/>
+          )}
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
     );
