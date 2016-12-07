@@ -51,12 +51,7 @@ class Runner extends Component {
 
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
-<<<<<<< 314b995fbf7d229a8f39584182e557eada76f8d7
     this.postLogin();
-||||||| merged common ancestors
-=======
-  this.postLogin()
->>>>>>> Working on log in
    this.getGroups();
    this.getCurrentData();
   }
