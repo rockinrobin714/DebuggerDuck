@@ -34,8 +34,8 @@ class Runner extends Component {
 //But right now, it does nothing
     this.state = {
       loggedIn: false,
-      username: 'Debugger Duck',
-      picture: 'http://squareonedsm.com/wp-content/uploads/2013/10/rubber-duck.jpg',
+      username: '',
+      picture: '',
       currentGroup: '',
       userId: '',
       groups:[],
@@ -80,6 +80,7 @@ class Runner extends Component {
     //this.setState({groupChosen:true});
     axios.post('/api/group', {data:{"groupName":groupName}})
       .then( response =>{
+        this.getGroups();
       })
        .catch(error => {
         console.log('Error while getting groups: ', error);
@@ -117,6 +118,7 @@ class Runner extends Component {
         this.setState({username: response.data.username});
         this.setState({picture: response.data.picture});
         this.setState({userId: response.data._id})
+        console.log(response.data.picture)
       })
       .catch(error =>{
         console.log('Error while getting user info', error)
@@ -204,13 +206,8 @@ class Runner extends Component {
     if (this.state.loggedIn===false){
       return (
         <div>
-          <NavBar
-          //pass in the postLogin and postLogout functions
-            //also pass current login state.
-          postLogin={this.postLogin.bind(this)} 
-          loggedIn={false} />
-          
-          <LandingPage login={this.postLogin.bind(this)}/>
+          <div className='nav-bar'></div>
+          <LandingPage />
         </div>
         )
     } else {
@@ -259,6 +256,7 @@ class Runner extends Component {
               currentData={this.state.currentData}
               postVolunteer={this.postVolunteer.bind(this)}
               postRequest={this.postRequest.bind(this)}
+              getCurrentData={this.getCurrentData.bind(this)}
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
