@@ -19,6 +19,13 @@ module.exports = {
           console.error(err);
           res.sendStatus(400);
         })
+    },
+    loggedIn: (req, res) => {
+      if (req.user.id) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
     }
   },
 
