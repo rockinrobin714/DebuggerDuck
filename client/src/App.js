@@ -53,8 +53,8 @@ class Runner extends Component {
   ///Run getGroups and getCurrentData on component load.
   componentDidMount() {
     this.postLogin();
-   this.getGroups();
-   this.getCurrentData();
+    this.getGroups();
+    this.getCurrentData();
   }
 
   getIdFromGroupName(name) {
