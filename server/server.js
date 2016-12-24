@@ -23,7 +23,7 @@ module.exports.NODEPORT = process.env.PORT || 4040;
 //Make a strategy for FB authentication
 
 if(!process.env.clientID) {
-var credentials = require('../config.js')
+var credentials = require('./config.js')
 } else {
  var deployedURL = `https://food-walker.herokuapp.com/auth/facebook/callback`
 }
