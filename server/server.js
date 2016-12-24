@@ -22,11 +22,21 @@ module.exports.NODEPORT = process.env.PORT || 4040;
 //which will be set at req.user in route handlers after authentication
 //Make a strategy for FB authentication
 
+if(!process.env.clientID) {
+var credentials = require('../config.js')
+} else {
+ var deployedURL = `https://food-walker.herokuapp.com/auth/facebook/callback`
+}
+
+var clientID = process.env.clientID||credentials.facebook.clientID
+var clientSecret = process.env.clientSecret||credentials.facebook.clientSecret
+var callbackURL = deployedURL||credentials.facebook.callbackURL
+
 if (process.env.server) {
   passport.use(new Strategy({
-    clientID: '361835207541944',
-    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
-    callbackURL: 'https://food-runner.herokuapp.com/facebook/oauth'
+    clientID: clientID,
+    clientSecret: clientSecret,
+    callbackURL: callbackURL
   },
   //facebook sends back tokens and profile
   function(accessToken, refreshToken, profile, done) {
@@ -51,8 +61,8 @@ if (process.env.server) {
   }));
 } else {
   passport.use(new Strategy({
-    clientID: '361835207541944',
-    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
+    clientID: clientID,
+    clientSecret: clientSecret,
     callbackURL: 'http://127.0.0.1:' + module.exports.NODEPORT + '/facebook/oauth'
   },
   //facebook sends back tokens and profile

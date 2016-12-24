@@ -4,7 +4,8 @@ const mongoose = require ('mongoose');
 mongoose.Promise = global.Promise;
  
 if(!process.env.dbUrl) {
-var mlab = require('../env/config.js')
+var mlab = require('../config.js');
+console.log(mlab)
 }
 var link = process.env.dbUrl || mlab.dbUrl
 mongoose.connect(`${link}`);
