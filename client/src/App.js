@@ -15,13 +15,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-
 import NavBar from './NavBar';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 import GroupModal from './GroupModal';
-
 
 class Runner extends Component {
   constructor(props) {
@@ -58,26 +56,26 @@ class Runner extends Component {
   }
 
   getIdFromGroupName(name) {
-    for (var i=0;i<this.state.groups.length;i++){
-      if (this.state.groups[i].name===name){
+    for (var i = 0; i < this.state.groups.length; i++) {
+      if (this.state.groups[i].name===name) {
         return this.state.groups[i]._id;
       } else {
-        console.log('Group Id not found')
+        console.log('Group Id not found');
       }
     }
   }
-  selectGroup(name){
-    this.setState({currentGroup: name});
+  selectGroup(name) {
+    this.setState({ currentGroup: name });
   }
-  selectDifferentGroup(){
-    this.setState({currentGroup:''});
+  selectDifferentGroup() {
+    this.setState({ currentGroup:'' });
     //this rerenders the app to go back to option 2 (mentioned above)
   }  
 
-  postGroup(groupName){
+  postGroup(groupName) {
     //this.setState({groupChosen:true});
-    axios.post('/api/group', {data:{"groupName":groupName}})
-      .then( response =>{
+    axios.post('/api/group', { data: { "groupName": groupName }})
+      .then( response => {
         this.getGroups();
       })
        .catch(error => {
@@ -86,11 +84,11 @@ class Runner extends Component {
   }
 
   //Gets full list of available groups and updates state.
-  getGroups(){
+  getGroups() {
     axios.get('/api/group')
       .then( response => {
-        this.setState( {groups:response.data.data} );
-        console.log('Group State?',this.state.groups);
+        this.setState({ groups:response.data.data });
+        console.log('Group State?', this.state.groups);
     })
       .catch(error => {
         console.log('Error while getting groups: ', error);
@@ -103,24 +101,24 @@ class Runner extends Component {
     axios.get('/api/volunteer')
       .then(response => {
         console.log('Getting Current Data?', response.data.data);
-        this.setState({currentData: response.data.data});
+        this.setState({ currentData: response.data.data });
       })
       .catch(error => {
         console.log('Error while getting current data: ', error);
       })
   }
 
-  getUserData(){
+  getUserData() {
     axios.get('/api/user')
       .then(response => {
         console.log('User info sucessfully retrieved', response);
-        this.setState({username: response.data.username});
-        this.setState({picture: response.data.picture});
-        this.setState({userId: response.data._id})
+        this.setState({ username: response.data.username });
+        this.setState({ picture: response.data.picture });
+        this.setState({ userId: response.data._id })
         console.log(response.data.picture)
       })
       .catch(error =>{
-        console.log('Error while getting user info', error)
+        console.log('Error while getting user info', error);
       })
   }
 
@@ -131,8 +129,8 @@ class Runner extends Component {
     axios.get('/api/user/loggedin')
       .then(response => {
         console.log('Login successful? ', response);
-        this.setState({loggedIn: true});
-        this.getUserData()
+        this.setState({ loggedIn: true });
+        this.getUserData();
       })
       .catch(error => {
         console.log('Error occurred during login ', error);
@@ -145,7 +143,7 @@ class Runner extends Component {
     axios.post('/api/login')
       .then(response => {
         console.log('Logged out:', response);
-        this.setState({loggedIn: false});
+        this.setState({ loggedIn: false });
         this.getUserData();
       })
       .catch(error => {
@@ -156,19 +154,19 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and a username, all strings for simplicity.
   postVolunteer(location, time, group) {
-    axios.post('/api/volunteer', {data:{
+    axios.post('/api/volunteer', { data:{
       username: this.state.username,
-      location: location,
-      time:  time,
-      picture: this.state.picture,
-      groupId: this.getIdFromGroupName(group)
+      location,
+      time,
+      picture:  this.state.picture,
+      groupId:  this.getIdFromGroupName(group)
       }
     })
     .then(response => {
-      console.log('Volunteer posted! ',response);
+      console.log('Volunteer posted! ', response);
     })
     .catch(error => {
-      console.log('Error while posting Volunteer: ',error);
+      console.log('Error while posting Volunteer: ', error);
     });
   }
   // postRequest sends a food request to the server.
@@ -178,12 +176,12 @@ class Runner extends Component {
   //     All strings
 
   postRequest(volunteerId, text) {
-      axios.post('/api/request', {data:{
+      axios.post('/api/request', { data: {
       //don't remove.  
       username: this.state.username,
       volunteerId: volunteerId,
       picture: this.state.picture, 
-      text: text,
+      text,
 
       }
     })
@@ -203,7 +201,7 @@ class Runner extends Component {
 // (Which in turn, will render the request component(s))
 
   render() {
-    if (this.state.loggedIn===false){
+    if (this.state.loggedIn === false) {
       return (
         <div>
           <div className='nav-bar'></div>
@@ -211,7 +209,7 @@ class Runner extends Component {
         </div>
         )
     } else {
-      if (this.state.currentGroup===''){
+      if (this.state.currentGroup === '') {
         return (
           <div>
           <NavBar 
@@ -220,7 +218,7 @@ class Runner extends Component {
           postLogout={this.postLogout.bind(this)}
           postLogin={this.postLogin.bind(this)}
           username={this.state.username} 
-          picture={this.state.picture}/>
+          picture={this.state.picture} />
           <div className='greeting'> Hi, {this.state.username}.</div>
           <div className='group-select'>Please select a group.</div>
             {this.state.groups.map(group =>
@@ -260,11 +258,10 @@ class Runner extends Component {
               //We pass down the selectDifferentGroup function to this component since the button is rendered there
               selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
-          )
-        }
+        )
+      }
     }  
   }   
 };
-
 
 export default Runner;
