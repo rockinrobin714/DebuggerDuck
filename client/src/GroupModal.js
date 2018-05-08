@@ -10,7 +10,7 @@ import {
 } from 'react-modal-bootstrap';
 
 class RequestModal extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
@@ -19,23 +19,23 @@ class RequestModal extends React.Component {
   }
   onTextChange(event) {
     //every time the user types a new letter, the state is changed to the current input
-    this.setState({text: event.target.value});
+    this.setState({ text: event.target.value });
   }
   
-  onSubmit (){
+  onSubmit() {
     this.setState({
       isOpen: false
     });
     this.props.postGroup(this.state.text);
   }
 
-  openModal (){
+  openModal() {
     this.setState({
       isOpen: true
     });
   };
 
-  hideModal(){
+  hideModal() {
     this.setState({
       isOpen: false
     });
@@ -52,7 +52,7 @@ class RequestModal extends React.Component {
         bottom: 0
       }
     };
-    let {isOpen, isSubOpen} = this.state;
+    let { isOpen, isSubOpen } = this.state;
     return (
         <div>
           Don't see any groups you like? Why not ...

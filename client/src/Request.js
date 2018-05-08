@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 //Request is pretty simple. It's parent component (request) does all the work for it and funnels down all the info it needs

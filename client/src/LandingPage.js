@@ -1,5 +1,5 @@
 //Login.js displays a facebook button
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import FacebookButton from './FacebookButton.js';
 
 //Not much to this component. Just some minor styling. 

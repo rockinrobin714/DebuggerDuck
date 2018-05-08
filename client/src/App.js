@@ -36,9 +36,9 @@ class Runner extends Component {
       picture: '',
       currentGroup: '',
       userId: '',
-      groups:[],
+      groups: [],
       //currentData holds all volunteers and requests from day.
-      currentData:[],
+      currentData: [],
 
     };
     //Binding context for functions that get passed down.
@@ -244,7 +244,8 @@ class Runner extends Component {
               postLogout={this.postLogout.bind(this)}
               postLogin={this.postLogin.bind(this)}
               username={this.state.username} 
-              picture={this.state.picture} />
+              picture={this.state.picture}
+            />
             <VolunteerRequestsContainer 
             //This also needs to be funneled info
               getIdFromGroupName={this.getIdFromGroupName.bind(this)}

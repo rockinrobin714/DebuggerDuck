@@ -10,9 +10,9 @@ import {
 } from 'react-modal-bootstrap';
 
 class VolunteerModal extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       isOpen: false,
       time: '',
       location: '',
@@ -20,11 +20,11 @@ class VolunteerModal extends React.Component {
   }
     onTimeChange(event) {
     //every time the user types a new letter, the state is changed to the current input
-    this.setState({time: event.target.value});
+    this.setState({ time: event.target.value });
   }
   onLocationChange(event) {
     //every time the user types a new letter, the state is changed to the current input
-    this.setState({location: event.target.value});
+    this.setState({ location: event.target.value });
   }
   
   onSubmit (){
@@ -39,18 +39,17 @@ class VolunteerModal extends React.Component {
     });
   }
 
-  openModal (){
+  openModal() {
     this.setState({
       isOpen: true
     });
   };
 
-  hideModal(){
+  hideModal() {
     this.setState({
       isOpen: false
     });
   };
-
 
   render() {
     let subModalDialogStyles = {
@@ -62,43 +61,43 @@ class VolunteerModal extends React.Component {
         bottom: 0
       }
     };
-    let {isOpen, isSubOpen} = this.state;
+    let { isOpen, isSubOpen } = this.state;
     return (
-        <div className='center'>
-          <button className="red-button" onClick={this.openModal.bind(this)}>
-            Volunteer your services to the {this.props.currentGroup} group
-          </button>
-
-          <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
-            <ModalHeader >
-              <ModalClose onClick={this.hideModal.bind(this)}/>
-              
-            </ModalHeader>
-            <div className='modal-inside'>
-              <div>
-                &nbsp; Where are you going? &nbsp;
-                <input 
+      <div className='center'>
+        <button className="red-button" onClick={this.openModal.bind(this)}>
+          Volunteer your services to the {this.props.currentGroup} group
+        </button>
+        <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
+          <ModalHeader>
+            <ModalClose onClick={this.hideModal.bind(this)}/>
+          </ModalHeader>
+          <div className='modal-inside'>
+            <div>
+              &nbsp; Where are you going? &nbsp;
+              <input 
                 onChange={this.onLocationChange.bind(this)} 
                 className='modal-input' 
                 type="text" 
-                id="location"/>
-              </div>
-              <div>
-                &nbsp; What time? &nbsp;
-                <input 
+                id="location"
+              />
+            </div>
+            <div>
+              &nbsp; What time? &nbsp;
+              <input 
                 onChange={this.onTimeChange.bind(this)} 
                 className='modal-input second-input' 
                 type="text" 
-                id="time"/>
-              </div>
+                id="time"
+              />
             </div>
-            <ModalFooter>
-              <button className="red-button" onClick={this.onSubmit.bind(this)}>
-                Submit
-              </button>
-            </ModalFooter>
-          </Modal>
-        </div>
+          </div>
+          <ModalFooter>
+            <button className="red-button" onClick={this.onSubmit.bind(this)}>
+              Submit
+            </button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }

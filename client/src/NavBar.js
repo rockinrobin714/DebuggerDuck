@@ -1,5 +1,4 @@
-
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FacebookButton from './FacebookButton.js'
 
@@ -8,12 +7,11 @@ import FacebookButton from './FacebookButton.js'
 class NavBar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loggedIn: false,
       //I have not yet done anything with the karma besides hard code it as 0 and display it.
       //This needs to be worked on.
-      karma: 0
+      karma: 0,
     };
   }
 
@@ -24,17 +22,17 @@ class NavBar extends Component {
   
   //login and logOut invoke the functions passed from App.
   login() {
-  	this.setState({loggedIn: true});
+  	this.setState({ loggedIn: true });
     console.log('Logout triggered from Navbar');
     this.props.postLogin();
-	 }
+	}
   //logout updates local state and runs postLogout, inherited from App. 
   logOut() {
-    this.setState({loggedIn: false})
+    this.setState({ loggedIn: false })
     this.props.postLogout();
   }
   render() { 
-  		return ( 
+		return ( 
     	<div className='nav-bar'>
     		<FacebookButton 
           logOut={this.logOut.bind(this)} 
@@ -43,9 +41,8 @@ class NavBar extends Component {
         <img className='nav-pic' src={this.props.picture}/>
         <div className='username'>{this.props.username} </div>
     	</div>
-  		);
-  	}
+  	);
+  }
 };
-
 
 export default NavBar;

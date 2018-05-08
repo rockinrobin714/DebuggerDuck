@@ -14,27 +14,27 @@ class RequestModal extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      text:''
+      text: '',
     };
   }
   onTextChange(event) {
     //every time the user types a new letter, the state is changed to the current input
-    this.setState({text: event.target.value});
+    this.setState({ text: event.target.value });
   }
   
-  onSubmit (){
+  onSubmit() {
     //Don't change this invocation.
     console.log('modal text?', this.state.text);
     this.props.onSubmit(this.state.text);
     this.setState({
       isOpen: false,
-      text: ''
+      text: '',
     });
   }
 
-  openModal (){
+  openModal() {
     this.setState({
-      isOpen: true
+      isOpen: true,
     });
   };
 
